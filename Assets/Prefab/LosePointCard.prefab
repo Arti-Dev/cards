@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6144939184027578775}
   - component: {fileID: 9075534190328472517}
   - component: {fileID: 7347118630389082967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,8 @@ GameObject:
   - component: {fileID: 7121551230684159402}
   - component: {fileID: 4192380336923039733}
   - component: {fileID: 943811882947758700}
-  m_Layer: 0
+  - component: {fileID: 1910813661200039289}
+  m_Layer: 7
   m_Name: LosePointCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,10 +285,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7384a6aff799745b45582ad9992445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 3878967425346432116}
+--- !u!114 &1910813661200039289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599886423614915624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bddabc8d24aa7449b3d9ad655f199d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   dropLayermask:
     serializedVersion: 2
     m_Bits: 64
-  text: {fileID: 3878967425346432116}
 --- !u!1 &8763877433431716398
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +313,7 @@ GameObject:
   - component: {fileID: 7888970469875977307}
   - component: {fileID: 4032234449862635781}
   - component: {fileID: 7236517387565169979}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

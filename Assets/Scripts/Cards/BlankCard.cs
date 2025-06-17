@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlankCard : Card
+public class BlankCard : CardBehavior
 {
 
     public override void play()

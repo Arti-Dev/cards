@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PointCard : Card
+public class PointCard : CardBehavior
 {
 
     [SerializeField] GameObject text = null;
@@ -22,12 +22,14 @@ public class PointCard : Card
 
     IEnumerator playCoroutine()
     {
+        PlayerState playerState = GetCardObject().GetPlayerState();
+        Card card = GetCardObject();
         text.SetActive(true);
         playerState.addScore(5);
 
         yield return new WaitForSeconds(2);
 
-        TransformLerp(playerState.GetDiscardPile().transform.position);
+        card.TransformLerp(playerState.GetDiscardPile().transform.position);
         text.SetActive(false);
         yield return new WaitForSeconds(1);
         Discard(playerState.GetDiscardPile());

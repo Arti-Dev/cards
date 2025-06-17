@@ -1,34 +1,30 @@
 using System;
 using UnityEngine;
 
-public abstract class Card : MonoBehaviour
+public class Card : MonoBehaviour
 {
     // Define which player state this card belongs to
     protected PlayerState playerState = null;
-    private bool dragging = false;
+    private bool moveable = true;
     private bool lerping = true;
     private float lerpTime = 0;
-    private const float lerpIncrement = 1/60f;
+    private const float lerpIncrement = 1 / 60f;
     private Vector3 startTransform = Vector3.zero;
     private Vector3 targetTransform = Vector3.zero;
     private Vector3 offset = Vector3.zero;
-    [SerializeField] private LayerMask dropLayermask;
+    [SerializeField] public LayerMask dropLayermask;
 
-    public abstract void play();
-    public abstract int get_id();
-
-    void OnMouseDown()
+    public void play()
     {
-        Debug.Log("Click");
-        if (lerping) return;
-        // offset between center and actual mouse click
-        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        dragging = true;
+        GetCardBehaviorObject().play();
+    }
+    public int get_id()
+    {
+        return GetCardBehaviorObject().get_id();
     }
 
-    void OnMouseUp()
+    public void OnDrop()
     {
-        dragging = false;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
         float.PositiveInfinity, dropLayermask);
 
@@ -41,7 +37,7 @@ public abstract class Card : MonoBehaviour
             }
             else if (type == typeof(DiscardPile))
             {
-                Discard(playerState.GetDiscardPile());
+                GetCardBehaviorObject().Discard(playerState.GetDiscardPile());
             }
         }
 
@@ -56,26 +52,17 @@ public abstract class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dragging)
-        {
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-        }
-        else if (lerping)
+        if (lerping)
         {
             lerpTime += lerpIncrement;
             transform.position = Vector3.Lerp(startTransform, targetTransform, lerpTime);
             if (lerpTime >= 1)
             {
                 lerping = false;
+                moveable = true;
                 lerpTime = 0;
             }
         }
-    }
-
-    protected void Discard(DiscardPile pile)
-    {
-        pile.UpdateTexture(this);
-        Destroy(gameObject);
     }
 
     public void TransformLerp(Vector3 endPosition)
@@ -83,5 +70,21 @@ public abstract class Card : MonoBehaviour
         startTransform = transform.position;
         targetTransform = endPosition;
         lerping = true;
+        moveable = false;
+    }
+
+    public bool CanMove()
+    {
+        return moveable;
+    }
+
+    protected CardBehavior GetCardBehaviorObject()
+    {
+        return gameObject.GetComponent<CardBehavior>();
+    }
+
+    public PlayerState GetPlayerState()
+    {
+        return playerState;
     }
 }
