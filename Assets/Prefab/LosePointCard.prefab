@@ -301,6 +301,9 @@ MonoBehaviour:
   dropLayermask:
     serializedVersion: 2
     m_Bits: 64
+  faceDownSprite: {fileID: -4571828015118065507, guid: be16c90a30bb44140b106acb778d51d4, type: 3}
+  spriteRenderer: {fileID: 7121551230684159402}
+  faceUpSprite: {fileID: 357006442158401228, guid: 532eb7ac680c46d48b1f97ccb87e8695, type: 3}
 --- !u!1 &8763877433431716398
 GameObject:
   m_ObjectHideFlags: 0

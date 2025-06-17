@@ -163,3 +163,6 @@ MonoBehaviour:
   dropLayermask:
     serializedVersion: 2
     m_Bits: 64
+  faceDownSprite: {fileID: -4571828015118065507, guid: be16c90a30bb44140b106acb778d51d4, type: 3}
+  spriteRenderer: {fileID: 3756274370172215844}
+  faceUpSprite: {fileID: 4478806928032562832, guid: c0e9f4475f09e78409224eebeb4226bc, type: 3}

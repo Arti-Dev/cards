@@ -20,6 +20,7 @@ public class PlayingArea : MonoBehaviour
     {
         // todo check if there's already a card in play
         MoveCardHere(card);
+        card.Show();
         card.play();
         // todo if there are too many cards here some cards will become permanently unmovable
     }

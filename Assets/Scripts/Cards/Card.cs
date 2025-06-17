@@ -13,6 +13,9 @@ public class Card : MonoBehaviour
     private Vector3 targetTransform = Vector3.zero;
     private Vector3 offset = Vector3.zero;
     [SerializeField] public LayerMask dropLayermask;
+    [SerializeField] private Sprite faceDownSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite faceUpSprite;
 
     public void play()
     {
@@ -39,6 +42,7 @@ public class Card : MonoBehaviour
             {
                 GetCardBehaviorObject().Discard(playerState.GetDiscardPile());
             }
+            return;
         }
 
     }
@@ -47,6 +51,18 @@ public class Card : MonoBehaviour
     protected virtual void Start()
     {
         playerState = PlayerState.GetPlayerState(this);
+    }
+
+    // We shouldn't need this method, but when I instantiate this class from the Deck the Start() doesn't run in time!
+    public void Init()
+    {
+        playerState = PlayerState.GetPlayerState(this);
+        spriteRenderer.sprite = faceDownSprite;
+    }
+
+    public void Show()
+    {
+        spriteRenderer.sprite = faceUpSprite;
     }
 
     // Update is called once per frame
@@ -75,7 +91,8 @@ public class Card : MonoBehaviour
 
     public bool CanMove()
     {
-        return moveable;
+        
+        return playerState.IsTurn() && moveable;
     }
 
     protected CardBehavior GetCardBehaviorObject()
@@ -85,6 +102,7 @@ public class Card : MonoBehaviour
 
     public PlayerState GetPlayerState()
     {
+        if (playerState == null) return PlayerState.GetPlayerState(this);
         return playerState;
     }
 }

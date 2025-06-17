@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 
 public class Deck : MonoBehaviour
 {
@@ -19,6 +18,11 @@ public class Deck : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SetPlayerState();
+    }
+
+    public void SetPlayerState()
+    {
         playerState = PlayerState.GetPlayerState(this);
     }
 
@@ -30,11 +34,20 @@ public class Deck : MonoBehaviour
 
     void OnMouseDown()
     {
+        DrawRandomCard();
+        PlayerState.GetPlayerState(this).TurnOver();
+        PlayerState.GetPlayerState(this).SignalToOpponent();
+    }
+
+    public void DrawRandomCard()
+    {
         int cardID = UnityEngine.Random.Range(0, 3);
         // Add a new card to the Hand that the PlayerState has
         Card card = Instantiate(NewCardByID(cardID), new Vector3(0, 0, 0), Quaternion.identity);
+        card.Init();
         card.transform.SetParent(transform, false);
         card.transform.SetParent(playerState.GetPlayerHand().transform, true);
         card.TransformLerp(playerState.GetPlayerHand().transform.position);
+        if (card.GetPlayerState().IsHuman()) card.Show();
     }
 }

@@ -16,6 +16,7 @@ public class PointCard : CardBehavior
     }
     public override void play()
     {
+        GetCardObject().GetPlayerState().TurnOver();
         StartCoroutine(playCoroutine());
 
     }

@@ -45,7 +45,8 @@ public class DragAll : MonoBehaviour
     {
         if (!hit) return;
         Card card = hit.transform.GetComponent<Card>();
-        if (card != null && !card.CanMove()) return;
+        if (card == null) return;
+        if (!card.CanMove() || !card.GetPlayerState().IsHuman()) return;
         dragging = hit.transform;
         offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>());
     }
