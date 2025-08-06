@@ -1,9 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PointCard : CardBehavior
+public class YoinkCard : CardBehavior
 {
 
     [SerializeField] GameObject text = null;
@@ -26,7 +24,9 @@ public class PointCard : CardBehavior
         PlayerState playerState = GetCardObject().GetPlayerState();
         Card card = GetCardObject();
         text.SetActive(true);
-        playerState.addScore(5);
+        // todo check if score is actually above 10
+        playerState.GetOpponentState().removeScore(10);
+        playerState.addScore(10);
 
         yield return new WaitForSeconds(2);
 
@@ -38,7 +38,7 @@ public class PointCard : CardBehavior
 
     public override string get_id()
     {
-        return "pointCard";
+        return "yoinkCard";
     }
 
 

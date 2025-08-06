@@ -23,6 +23,8 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private PlayerState opponentState;
     [SerializeField] private CPUPlayer cpu;
 
+    [SerializeField] private CardDatabase cardDatabase;
+
     // The direction to push cards if we draw a card and another one is already there
     // [SerializeField] Vector3 shiftVector;
 
@@ -33,6 +35,7 @@ public class PlayerState : MonoBehaviour
         // Sometimes the Deck's Start() method runs after this method for some reason, so set the reference now
         deck.SetPlayerState();
         StartCoroutine(StartingCoroutine());
+        cardDatabase.initDictionary();
     }
 
     IEnumerator StartingCoroutine()
@@ -121,6 +124,11 @@ public class PlayerState : MonoBehaviour
     public bool IsTurn()
     {
         return turn;
+    }
+
+    public PlayerState GetOpponentState()
+    {
+        return opponentState;
     }
 
 }

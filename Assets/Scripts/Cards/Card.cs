@@ -21,7 +21,7 @@ public class Card : MonoBehaviour
     {
         GetCardBehaviorObject().play();
     }
-    public int get_id()
+    public string get_id()
     {
         return GetCardBehaviorObject().get_id();
     }

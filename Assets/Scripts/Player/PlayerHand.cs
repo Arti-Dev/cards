@@ -27,6 +27,12 @@ public class PlayerHand : MonoBehaviour
         PlayerState.GetPlayerState(this).GetPlayingArea().PlayCard(card);
     }
 
+    public void PlayCard(int index)
+    {
+        Card card = transform.GetChild(index).GetComponent<Card>();
+        PlayerState.GetPlayerState(this).GetPlayingArea().PlayCard(card);
+    }
+
     // public Vector3 calculateLandingSpot()
     // {
     //     Transform[] children = GetComponentsInChildren<Transform>();

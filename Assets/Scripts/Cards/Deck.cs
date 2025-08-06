@@ -41,7 +41,7 @@ public class Deck : MonoBehaviour
 
     public void DrawRandomCard()
     {
-        int cardID = UnityEngine.Random.Range(0, 3);
+        int cardID = UnityEngine.Random.Range(0, allPossibleCards.Count);
         // Add a new card to the Hand that the PlayerState has
         Card card = Instantiate(NewCardByID(cardID), new Vector3(0, 0, 0), Quaternion.identity);
         card.Init();
@@ -49,5 +49,7 @@ public class Deck : MonoBehaviour
         card.transform.SetParent(playerState.GetPlayerHand().transform, true);
         card.TransformLerp(playerState.GetPlayerHand().transform.position);
         if (card.GetPlayerState().IsHuman()) card.Show();
+
+        print(CardDatabase.GetPrefab(card.get_id()));
     }
 }

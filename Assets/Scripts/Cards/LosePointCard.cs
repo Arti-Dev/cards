@@ -35,9 +35,9 @@ public class LosePointCard : CardBehavior
         Discard(playerState.GetDiscardPile());
     }
 
-    public override int get_id()
+    public override string get_id()
     {
-        return 2;
+        return "losePointCard";
     }
 
 

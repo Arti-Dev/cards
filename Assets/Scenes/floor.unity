@@ -214,7 +214,7 @@ MonoBehaviour:
   allPossibleCards:
   - {fileID: 4233463068714788521, guid: 27a6c6ce5da5bd14f9aa3e907bcfb709, type: 3}
   - {fileID: 1910813661200039289, guid: 7e99d07d216c9c345a881384b0a77ca2, type: 3}
-  - {fileID: 1091965798744762993, guid: 8f0906325b6f756439d514dc5d5f3773, type: 3}
+  - {fileID: 4375299287176155141, guid: 089066470b03dde4bb9e96b77d780a72, type: 3}
 --- !u!212 &214424528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -422,6 +422,7 @@ MonoBehaviour:
   - {fileID: 1091965798744762993, guid: 8f0906325b6f756439d514dc5d5f3773, type: 3}
   - {fileID: 1910813661200039289, guid: 7e99d07d216c9c345a881384b0a77ca2, type: 3}
   - {fileID: 4233463068714788521, guid: 27a6c6ce5da5bd14f9aa3e907bcfb709, type: 3}
+  - {fileID: 4375299287176155141, guid: 089066470b03dde4bb9e96b77d780a72, type: 3}
 --- !u!61 &374860035
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -571,6 +572,7 @@ MonoBehaviour:
   discardPile: {fileID: 579045581}
   opponentState: {fileID: 703585309}
   cpu: {fileID: 562167165}
+  cardDatabase: {fileID: 0}
 --- !u!114 &562167165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +967,7 @@ MonoBehaviour:
   discardPile: {fileID: 2138427450}
   opponentState: {fileID: 562167164}
   cpu: {fileID: 0}
+  cardDatabase: {fileID: 11400000, guid: 2165d98c8e7c2844199d0040c653d71d, type: 2}
 --- !u!4 &703585310
 Transform:
   m_ObjectHideFlags: 0
