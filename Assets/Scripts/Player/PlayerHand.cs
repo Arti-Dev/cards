@@ -20,17 +20,17 @@ public class PlayerHand : MonoBehaviour
         return transform.childCount;
     }
 
-    public void PlayRandomCard()
+    public Card GetCard(int index)
     {
-        int randomCard = UnityEngine.Random.Range(0, CountCards());
-        Card card = transform.GetChild(randomCard).GetComponent<Card>();
-        PlayerState.GetPlayerState(this).GetPlayingArea().PlayCard(card);
+        if (index >= transform.childCount) return null;
+        Card card = transform.GetChild(index).GetComponent<Card>();
+        return card;
     }
 
     public void PlayCard(int index)
     {
         Card card = transform.GetChild(index).GetComponent<Card>();
-        PlayerState.GetPlayerState(this).GetPlayingArea().PlayCard(card);
+        Player.GetPlayer(this).GetPlayingArea().PlayCard(card);
     }
 
     // public Vector3 calculateLandingSpot()

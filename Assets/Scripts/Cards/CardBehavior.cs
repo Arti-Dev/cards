@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class CardBehavior : MonoBehaviour
 {
-    public abstract void play();
-    public abstract string get_id();
+    public abstract void Play();
+    public abstract string GetId();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -15,8 +15,8 @@ public abstract class CardBehavior : MonoBehaviour
     {
         pile.UpdateTexture(GetCardObject());
         Destroy(gameObject);
-        GetCardObject().GetPlayerState().TurnOver();
-        GetCardObject().GetPlayerState().SignalToOpponent();
+        GetCardObject().GetPlayer().TurnOver();
+        GetCardObject().GetPlayer().SignalToOpponent();
     }
 
     protected Card GetCardObject()

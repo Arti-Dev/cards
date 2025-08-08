@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerState : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private int startingScore = 50;
     private int score;
@@ -20,7 +20,7 @@ public class PlayerState : MonoBehaviour
 
     private bool turn = true;
 
-    [SerializeField] private PlayerState opponentState;
+    [SerializeField] private Player opponent;
     [SerializeField] private CPUPlayer cpu;
 
     [SerializeField] private CardDatabase cardDatabase;
@@ -33,7 +33,7 @@ public class PlayerState : MonoBehaviour
     {
         score = startingScore;
         // Sometimes the Deck's Start() method runs after this method for some reason, so set the reference now
-        deck.SetPlayerState();
+        deck.SetPlayer();
         StartCoroutine(StartingCoroutine());
         cardDatabase.initDictionary();
     }
@@ -69,9 +69,9 @@ public class PlayerState : MonoBehaviour
         scoreText.text = $"Score: {score}";
     }
 
-    public static PlayerState GetPlayerState(MonoBehaviour obj)
+    public static Player GetPlayer(MonoBehaviour obj)
     {
-        return obj.GetComponentInParent<PlayerState>();
+        return obj.GetComponentInParent<Player>();
     }
 
     public PlayingArea GetPlayingArea()
@@ -102,7 +102,7 @@ public class PlayerState : MonoBehaviour
     public void SignalToOpponent()
     {
         if (isHuman) Debug.Log("Opponent's turn...");
-        opponentState.TurnStart();
+        opponent.TurnStart();
     }
 
     public void TurnStart()
@@ -126,9 +126,9 @@ public class PlayerState : MonoBehaviour
         return turn;
     }
 
-    public PlayerState GetOpponentState()
+    public Player GetOpponent()
     {
-        return opponentState;
+        return opponent;
     }
 
 }

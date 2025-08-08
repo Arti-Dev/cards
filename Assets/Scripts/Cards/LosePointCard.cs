@@ -14,15 +14,15 @@ public class LosePointCard : CardBehavior
         base.Start();
         text.SetActive(false);
     }
-    public override void play()
+    public override void Play()
     {
-        GetCardObject().GetPlayerState().TurnOver();
+        GetCardObject().GetPlayer().TurnOver();
         StartCoroutine(playCoroutine());
     }
 
     IEnumerator playCoroutine()
     {
-        PlayerState playerState = GetCardObject().GetPlayerState();
+        Player playerState = GetCardObject().GetPlayer();
         Card card = GetCardObject();
         text.SetActive(true);
         playerState.removeScore(5);
@@ -35,7 +35,7 @@ public class LosePointCard : CardBehavior
         Discard(playerState.GetDiscardPile());
     }
 
-    public override string get_id()
+    public override string GetId()
     {
         return "losePointCard";
     }

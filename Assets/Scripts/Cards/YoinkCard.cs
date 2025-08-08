@@ -12,20 +12,20 @@ public class YoinkCard : CardBehavior
         base.Start();
         text.SetActive(false);
     }
-    public override void play()
+    public override void Play()
     {
-        GetCardObject().GetPlayerState().TurnOver();
+        GetCardObject().GetPlayer().TurnOver();
         StartCoroutine(playCoroutine());
 
     }
 
     IEnumerator playCoroutine()
     {
-        PlayerState playerState = GetCardObject().GetPlayerState();
+        Player playerState = GetCardObject().GetPlayer();
         Card card = GetCardObject();
         text.SetActive(true);
         // todo check if score is actually above 10
-        playerState.GetOpponentState().removeScore(10);
+        playerState.GetOpponent().removeScore(10);
         playerState.addScore(10);
 
         yield return new WaitForSeconds(2);
@@ -36,7 +36,7 @@ public class YoinkCard : CardBehavior
         Discard(playerState.GetDiscardPile());
     }
 
-    public override string get_id()
+    public override string GetId()
     {
         return "yoinkCard";
     }

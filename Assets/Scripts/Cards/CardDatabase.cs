@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,10 +9,17 @@ public class CardDatabase : ScriptableObject
     private static Dictionary<string, GameObject> cardDictionary = new Dictionary<string, GameObject>();
     public List<GameObject> cardList;
 
-    public static GameObject InstantiateCard(string str)
+    public static Card InstantiateCard(string str)
     {
         if (!cardDictionary.ContainsKey(str)) return null;
-        else return Instantiate(cardDictionary[str]);
+        else return Instantiate(cardDictionary[str]).GetComponent<Card>();
+    }
+
+    public static Card InstantiateRandomCard()
+    {
+        int randomInt = UnityEngine.Random.Range(0, cardDictionary.Count);
+        List<string> ids = Enumerable.ToList<string>(cardDictionary.Keys);
+        return InstantiateCard(ids[randomInt]);
     }
 
     public void initDictionary()
@@ -19,9 +27,15 @@ public class CardDatabase : ScriptableObject
         foreach (GameObject card in cardList)
         {
             if (card.GetComponent<Card>())
-                cardDictionary[card.GetComponent<Card>().get_id()] = card;
+                cardDictionary[card.GetComponent<Card>().GetID()] = card;
         }
     }
+
+    public static int TotalCardCount()
+    {
+        return cardDictionary.Count;
+    }
+
 
     public static GameObject GetPrefab(string str)
     {

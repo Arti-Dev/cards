@@ -1,23 +1,24 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CPUPlayer : MonoBehaviour
 {
 
-    public void Decide(PlayerState state)
+    public void Decide(Player player)
     {
-        StartCoroutine(DecideCoroutine(state));
+        StartCoroutine(DecideCoroutine(player));
     }
 
-    IEnumerator DecideCoroutine(PlayerState state)
+    IEnumerator DecideCoroutine(Player player)
     {
         yield return new WaitForSeconds(2);
-        int cards = state.GetPlayerHand().CountCards();
+        int cards = player.GetPlayerHand().CountCards();
         if (cards < 2)
         {
-            state.GetDeck().DrawRandomCard();
-            PlayerState.GetPlayerState(this).TurnOver();
-            PlayerState.GetPlayerState(this).SignalToOpponent();
+            player.GetDeck().DrawRandomCard();
+            Player.GetPlayer(this).TurnOver();
+            Player.GetPlayer(this).SignalToOpponent();
         }
         else
         {
@@ -25,13 +26,14 @@ public class CPUPlayer : MonoBehaviour
             int random = UnityEngine.Random.Range(0, 2);
             if (random == 0)
             {
-                state.GetPlayerHand().PlayRandomCard();
+                int randomCard = UnityEngine.Random.Range(0, player.GetPlayerHand().CountCards());
+                player.GetPlayerHand().PlayCard(randomCard);
             }
             else
             {
-                state.GetDeck().DrawRandomCard();
-                PlayerState.GetPlayerState(this).TurnOver();
-                PlayerState.GetPlayerState(this).SignalToOpponent();
+                player.GetDeck().DrawRandomCard();
+                Player.GetPlayer(this).TurnOver();
+                Player.GetPlayer(this).SignalToOpponent();
             }
         }
     }

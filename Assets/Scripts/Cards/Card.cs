@@ -4,7 +4,7 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     // Define which player state this card belongs to
-    protected PlayerState playerState = null;
+    protected Player player = null;
     private bool moveable = true;
     private bool lerping = true;
     private float lerpTime = 0;
@@ -17,13 +17,13 @@ public class Card : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite faceUpSprite;
 
-    public void play()
+    public void Play()
     {
-        GetCardBehaviorObject().play();
+        GetCardBehaviorObject().Play();
     }
-    public string get_id()
+    public string GetID()
     {
-        return GetCardBehaviorObject().get_id();
+        return GetCardBehaviorObject().GetId();
     }
 
     public void OnDrop()
@@ -36,11 +36,11 @@ public class Card : MonoBehaviour
             Type type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
             if (type == typeof(PlayingArea))
             {
-                playerState.GetPlayingArea().PlayCard(this);
+                player.GetPlayingArea().PlayCard(this);
             }
             else if (type == typeof(DiscardPile))
             {
-                GetCardBehaviorObject().Discard(playerState.GetDiscardPile());
+                GetCardBehaviorObject().Discard(player.GetDiscardPile());
             }
             return;
         }
@@ -50,13 +50,13 @@ public class Card : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        playerState = PlayerState.GetPlayerState(this);
+        player = Player.GetPlayer(this);
     }
 
     // We shouldn't need this method, but when I instantiate this class from the Deck the Start() doesn't run in time!
     public void Init()
     {
-        playerState = PlayerState.GetPlayerState(this);
+        player = Player.GetPlayer(this);
         spriteRenderer.sprite = faceDownSprite;
     }
 
@@ -91,8 +91,7 @@ public class Card : MonoBehaviour
 
     public bool CanMove()
     {
-        
-        return playerState.IsTurn() && moveable;
+        return player.IsTurn() && moveable;
     }
 
     protected CardBehavior GetCardBehaviorObject()
@@ -100,9 +99,9 @@ public class Card : MonoBehaviour
         return gameObject.GetComponent<CardBehavior>();
     }
 
-    public PlayerState GetPlayerState()
+    public Player GetPlayer()
     {
-        if (playerState == null) return PlayerState.GetPlayerState(this);
-        return playerState;
+        if (player == null) return Player.GetPlayer(this);
+        return player;
     }
 }

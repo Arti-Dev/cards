@@ -3,15 +3,15 @@ using UnityEngine;
 public class BlankCard : CardBehavior
 {
 
-    public override void play()
+    public override void Play()
     {
-        PlayerState playerState = GetCardObject().GetPlayerState();
+        Player playerState = GetCardObject().GetPlayer();
         Card card = GetCardObject();
         card.TransformLerp(playerState.GetDiscardPile().transform.position);
         Discard(playerState.GetDiscardPile());
     }
 
-    public override string get_id()
+    public override string GetId()
     {
         return "blankCard";
     }
