@@ -16,6 +16,6 @@ public class DiscardPile : MonoBehaviour
 
     public void UpdateTexture(Card card)
     {
-        GetComponent<SpriteRenderer>().sprite = card.GetComponent<SpriteRenderer>().sprite;
+        GetComponent<SpriteRenderer>().sprite = card.GetSpriteRenderer().sprite;
     }
 }

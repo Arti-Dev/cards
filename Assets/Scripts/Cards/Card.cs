@@ -104,4 +104,9 @@ public class Card : MonoBehaviour
         if (player == null) return Player.GetPlayer(this);
         return player;
     }
+
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        return spriteRenderer;
+    }
 }
