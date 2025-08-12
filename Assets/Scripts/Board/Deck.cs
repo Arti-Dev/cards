@@ -27,7 +27,6 @@ public class Deck : MonoBehaviour
     {
         DrawRandomCard();
         Player.GetPlayer(this).TurnOver();
-        Player.GetPlayer(this).SignalToOpponent();
     }
 
     public void DrawRandomCard()

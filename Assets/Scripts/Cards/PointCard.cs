@@ -26,7 +26,7 @@ public class PointCard : CardBehavior
         Player playerState = GetCardObject().GetPlayer();
         Card card = GetCardObject();
         text.SetActive(true);
-        playerState.addScore(5);
+        playerState.AddScore(5);
 
         yield return new WaitForSeconds(2);
 

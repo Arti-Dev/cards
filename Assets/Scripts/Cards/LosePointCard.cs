@@ -25,7 +25,7 @@ public class LosePointCard : CardBehavior
         Player playerState = GetCardObject().GetPlayer();
         Card card = GetCardObject();
         text.SetActive(true);
-        playerState.removeScore(5);
+        playerState.RemoveScore(5);
 
         yield return new WaitForSeconds(2);
 

@@ -17,12 +17,12 @@ public class CardDatabase : ScriptableObject
 
     public static Card InstantiateRandomCard()
     {
-        int randomInt = UnityEngine.Random.Range(0, cardDictionary.Count);
+        int randomInt = Random.Range(0, cardDictionary.Count);
         List<string> ids = Enumerable.ToList<string>(cardDictionary.Keys);
         return InstantiateCard(ids[randomInt]);
     }
 
-    public void initDictionary()
+    public void InitDictionary()
     {
         foreach (GameObject card in cardList)
         {

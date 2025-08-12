@@ -1,10 +1,10 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    private Game game = null;
     [SerializeField] private int startingScore = 50;
     private int score;
 
@@ -13,14 +13,13 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject scoreTextObject = null;
     private TMP_Text scoreText = null;
 
-    [SerializeField] private PlayingArea area = null;
+    [SerializeField] private PlayingArea playingArea = null;
     [SerializeField] private Hand hand = null;
     [SerializeField] private Deck deck = null;
     [SerializeField] private DiscardPile discardPile = null;
 
-    private bool turn = true;
-
-    [SerializeField] private Player opponent;
+    private bool turn;
+    
     [SerializeField] private CPUPlayer cpu;
 
     [SerializeField] private CardDatabase cardDatabase;
@@ -35,7 +34,7 @@ public class Player : MonoBehaviour
         // Sometimes the Deck's Start() method runs after this method for some reason, so set the reference now
         deck.SetPlayer();
         StartCoroutine(StartingCoroutine());
-        cardDatabase.initDictionary();
+        scoreText = scoreTextObject.GetComponent<TMP_Text>();
     }
 
     IEnumerator StartingCoroutine()
@@ -46,23 +45,22 @@ public class Player : MonoBehaviour
             deck.DrawRandomCard();
             yield return new WaitForSeconds(0.3f);
         }
-        if (isHuman) turn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText = scoreTextObject.GetComponent<TMP_Text>();
+        
     }
 
-    public void addScore(int delta)
+    public void AddScore(int delta)
     {
         if (score < 0) return;
         score += delta;
         scoreText.text = $"Score: {score}";
     }
 
-    public void removeScore(int delta)
+    public void RemoveScore(int delta)
     {
         if (score < 0) return;
         score -= delta;
@@ -76,7 +74,7 @@ public class Player : MonoBehaviour
 
     public PlayingArea GetPlayingArea()
     {
-        return area;
+        return playingArea;
     }
 
     public Hand GetPlayerHand()
@@ -99,19 +97,14 @@ public class Player : MonoBehaviour
         return isHuman;
     }
 
-    public void SignalToOpponent()
-    {
-        if (isHuman) Debug.Log("Opponent's turn...");
-        opponent.TurnStart();
-    }
-
     public void TurnStart()
     {
         turn = true;
         if (isHuman) Debug.Log("It's your turn!");
 
-        if (cpu != null)
+        if (cpu)
         {
+            Debug.Log("Opponent's turn...");
             cpu.Decide(this);
         }
     }
@@ -119,16 +112,23 @@ public class Player : MonoBehaviour
     public void TurnOver()
     {
         turn = false;
+        game.NextTurn(this);
     }
 
     public bool IsTurn()
     {
         return turn;
     }
-
+    
     public Player GetOpponent()
     {
-        return opponent;
+        if (game) return game.GetCpuPlayer1();
+        return null;
+    }
+    
+    public void SetGame(Game game)
+    {
+        this.game = game;
     }
 
 }
