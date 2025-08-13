@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Game game = null;
+    private Game game;
     [SerializeField] private int startingScore = 50;
     private int score;
 
@@ -17,8 +17,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Hand hand = null;
     [SerializeField] private Deck deck = null;
     [SerializeField] private DiscardPile discardPile = null;
-
+    
     private bool turn;
+    // Inactionable means that the player cannot make any other moves right now (but their turn isn't over)
+    private bool actionable;
     
     [SerializeField] private CPUPlayer cpu;
 
@@ -100,6 +102,7 @@ public class Player : MonoBehaviour
     public void TurnStart()
     {
         turn = true;
+        actionable = true;
         if (isHuman) Debug.Log("It's your turn!");
 
         if (cpu)
@@ -112,6 +115,7 @@ public class Player : MonoBehaviour
     public void TurnOver()
     {
         turn = false;
+        actionable = false;
         game.NextTurn(this);
     }
 
@@ -129,6 +133,16 @@ public class Player : MonoBehaviour
     public void SetGame(Game game)
     {
         this.game = game;
+    }
+
+    public bool IsActionable()
+    {
+        return actionable;
+    }
+    
+    public void SetActionable(bool actionable)
+    {
+        this.actionable = actionable;
     }
 
 }

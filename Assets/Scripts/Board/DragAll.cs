@@ -20,7 +20,7 @@ public class DragAll : MonoBehaviour
     void Update()
     {
         // click
-        if (leftClickAction.IsPressed() && dragging == null)
+        if (leftClickAction.IsPressed() && !dragging)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>()), Vector2.zero,
         float.PositiveInfinity, dragMask);
@@ -45,7 +45,7 @@ public class DragAll : MonoBehaviour
     {
         if (!hit) return;
         Card card = hit.transform.GetComponent<Card>();
-        if (card == null) return;
+        if (!card) return;
         if (!card.CanMove() || !card.GetPlayer().IsHuman()) return;
         dragging = hit.transform;
         offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>());

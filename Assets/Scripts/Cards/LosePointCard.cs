@@ -16,7 +16,8 @@ public class LosePointCard : CardBehavior
     }
     public override void Play()
     {
-        GetCardObject().GetPlayer().TurnOver();
+        Card card = GetCardObject();
+        card.GetPlayer().SetActionable(false);
         StartCoroutine(playCoroutine());
     }
 

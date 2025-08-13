@@ -30,19 +30,22 @@ public class Card : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
         float.PositiveInfinity, dropLayermask);
-
-        if (hit)
+        if (!hit) return;
+        
+        if (!player.IsTurn() || !player.IsActionable())
         {
-            Type type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
-            if (type == typeof(PlayingArea))
-            {
-                player.GetPlayingArea().PlayCard(this);
-            }
-            else if (type == typeof(DiscardPile))
-            {
-                GetCardBehaviorObject().Discard(player.GetDiscardPile());
-            }
+            Debug.Log("It's not your turn!");
             return;
+        }
+        
+        Type type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
+        if (type == typeof(PlayingArea))
+        {
+            player.GetPlayingArea().PlayCard(this);
+        }
+        else if (type == typeof(DiscardPile))
+        {
+            GetCardBehaviorObject().Discard(player.GetDiscardPile());
         }
 
     }
@@ -91,7 +94,7 @@ public class Card : MonoBehaviour
 
     public bool CanMove()
     {
-        return player.IsTurn() && moveable;
+        return moveable;
     }
 
     protected CardBehavior GetCardBehaviorObject()

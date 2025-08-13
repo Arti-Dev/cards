@@ -12,7 +12,7 @@ public class CPUPlayer : MonoBehaviour
 
     IEnumerator DecideCoroutine(Player player)
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         int cards = player.GetPlayerHand().CountCards();
         if (cards < 2)
         {
