@@ -37,7 +37,7 @@ public class Deck : MonoBehaviour
 
     public void DrawRandomCard()
     {
-        Card card = CardDatabase.InstantiateRandomCard();
+        Card card = CardDatabase.InstantiateRandomCard(transform);
         card.Init();
         card.transform.SetParent(transform, false);
         card.transform.SetParent(player.GetPlayerHand().transform, true);

@@ -9,17 +9,19 @@ public class CardDatabase : ScriptableObject
     private static Dictionary<string, GameObject> cardDictionary = new Dictionary<string, GameObject>();
     public List<GameObject> cardList;
 
-    public static Card InstantiateCard(string str)
+    public static Card InstantiateCard(string str, Transform parent)
     {
         if (!cardDictionary.ContainsKey(str)) return null;
-        else return Instantiate(cardDictionary[str]).GetComponent<Card>();
+        Card card = Instantiate(cardDictionary[str], parent).GetComponent<Card>();
+        card.transform.localPosition = Vector3.zero;
+        return card;
     }
 
-    public static Card InstantiateRandomCard()
+    public static Card InstantiateRandomCard(Transform parent)
     {
         int randomInt = Random.Range(0, cardDictionary.Count);
         List<string> ids = Enumerable.ToList<string>(cardDictionary.Keys);
-        return InstantiateCard(ids[randomInt]);
+        return InstantiateCard(ids[randomInt], parent);
     }
 
     public void InitDictionary()
