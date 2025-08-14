@@ -15,7 +15,6 @@ public abstract class CardBehavior : MonoBehaviour
     {
         pile.UpdateTexture(GetCardObject());
         Destroy(gameObject);
-        GetCardObject().GetPlayer().TurnOver();
     }
 
     protected Card GetCardObject()

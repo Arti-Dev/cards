@@ -27,6 +27,7 @@ public class CPUPlayer : MonoBehaviour
             {
                 int randomCard = UnityEngine.Random.Range(0, player.GetPlayerHand().CountCards());
                 player.GetPlayerHand().PlayCard(randomCard);
+                StartCoroutine(DecideCoroutine(player));
             }
             else
             {

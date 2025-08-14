@@ -36,6 +36,7 @@ public class YoinkCard : CardBehavior
         text.SetActive(false);
         yield return new WaitForSeconds(1);
         Discard(player.GetDiscardPile());
+        GetCardObject().GetPlayer().SetActionable(true);
     }
 
     public override string GetId()

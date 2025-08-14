@@ -32,9 +32,14 @@ public class Card : MonoBehaviour
         float.PositiveInfinity, dropLayermask);
         if (!hit) return;
         
-        if (!player.IsTurn() || !player.IsActionable())
+        if (!player.IsTurn())
         {
             Debug.Log("It's not your turn!");
+            return;
+        }
+        if (!player.IsActionable())
+        {
+            Debug.Log("You can't play a card right now!");
             return;
         }
         

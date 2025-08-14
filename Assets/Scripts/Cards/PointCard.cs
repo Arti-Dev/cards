@@ -34,6 +34,7 @@ public class PointCard : CardBehavior
         text.SetActive(false);
         yield return new WaitForSeconds(1);
         Discard(playerState.GetDiscardPile());
+        GetCardObject().GetPlayer().SetActionable(true);
     }
 
     public override string GetId()
