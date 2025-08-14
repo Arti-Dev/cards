@@ -50,12 +50,12 @@ public class Game : MonoBehaviour
     {
         if (!whoEndedTurn) return;
         // Player who ended the turn must be the active player
-        Debug.Log(whoEndedTurn.name + " called NextTurn");
         if (whoEndedTurn != turnOrder[activePlayerIndex]) return;
         
         activePlayerIndex++;
         if (activePlayerIndex >= turnOrder.Count) activePlayerIndex = 0;
         turnOrder[activePlayerIndex].TurnStart();
+        Debug.Log(turnOrder[activePlayerIndex].name + "'s turn");
     }
 
     public Player GetPlayer1()

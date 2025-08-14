@@ -103,11 +103,9 @@ public class Player : MonoBehaviour
     {
         turn = true;
         actionable = true;
-        if (isHuman) Debug.Log("It's your turn!");
 
         if (cpu)
         {
-            Debug.Log("Opponent's turn...");
             cpu.Decide(this);
         }
     }
@@ -115,7 +113,7 @@ public class Player : MonoBehaviour
     public void TurnOver()
     {
         turn = false;
-        actionable = false;
+        actionable = true;
         game.NextTurn(this);
     }
 
@@ -126,6 +124,7 @@ public class Player : MonoBehaviour
     
     public Player GetOpponent()
     {
+        // todo This needs to check which player is calling this method, and return the opposing party.
         if (game) return game.GetCpuPlayer1();
         return null;
     }
