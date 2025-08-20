@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DragAll : MonoBehaviour
+public class DragCards : MonoBehaviour
 {
-    private Transform dragging = null;
+    private Card draggingCard;
+    private Vector3 originalPosition;
     private Vector3 offset;
     private InputAction leftClickAction;
     private InputAction mousePositionAction;
@@ -20,24 +21,22 @@ public class DragAll : MonoBehaviour
     void Update()
     {
         // click
-        if (leftClickAction.IsPressed() && !dragging)
+        if (leftClickAction.IsPressed() && !draggingCard)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>()), Vector2.zero,
         float.PositiveInfinity, dragMask);
             HandleHit(hit);
         }
         // release
-        else if (!leftClickAction.IsPressed() && dragging != null)
+        else if (!leftClickAction.IsPressed() && draggingCard != null)
         {
-            Card card = dragging.GetComponent<Card>();
-            if (card != null) card.OnDrop();
-
-            dragging = null;
+            if (draggingCard != null) draggingCard.OnDrop(originalPosition);
+            draggingCard = null;
         }
 
-        if (dragging != null)
+        if (draggingCard != null)
         {
-            dragging.position = Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>()) + offset;
+            draggingCard.transform.position = Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>()) + offset;
         }
     }
 
@@ -47,7 +46,8 @@ public class DragAll : MonoBehaviour
         Card card = hit.transform.GetComponent<Card>();
         if (!card) return;
         if (!card.CanMove() || !card.GetPlayer().IsHuman()) return;
-        dragging = hit.transform;
-        offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>());
+        draggingCard = card;
+        offset = card.transform.position - Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>());
+        originalPosition = card.transform.position;
     }
 }

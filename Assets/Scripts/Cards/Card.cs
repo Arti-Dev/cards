@@ -26,7 +26,7 @@ public class Card : MonoBehaviour
         return GetCardBehaviorObject().GetId();
     }
 
-    public void OnDrop()
+    public void OnDrop(Vector3 originalPosition)
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
         float.PositiveInfinity, dropLayermask);
@@ -35,11 +35,13 @@ public class Card : MonoBehaviour
         if (!player.IsTurn())
         {
             Debug.Log("It's not your turn!");
+            TransformLerp(originalPosition);
             return;
         }
         if (!player.IsActionable())
         {
             Debug.Log("You can't play a card right now!");
+            TransformLerp(originalPosition);
             return;
         }
         
@@ -51,6 +53,10 @@ public class Card : MonoBehaviour
         else if (type == typeof(DiscardPile))
         {
             GetCardBehaviorObject().Discard(player.GetDiscardPile());
+        }
+        else
+        {
+            TransformLerp(originalPosition);
         }
 
     }

@@ -32,6 +32,8 @@ public class Hand : MonoBehaviour
         Card card = transform.GetChild(index).GetComponent<Card>();
         Player.GetPlayer(this).GetPlayingArea().PlayCard(card);
     }
+    
+    
 
     // public Vector3 calculateLandingSpot()
     // {
