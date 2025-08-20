@@ -784,7 +784,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 579045580}
-  - {fileID: 612349316}
   - {fileID: 953764092}
   - {fileID: 214424525}
   - {fileID: 1316725443}
@@ -982,7 +981,7 @@ GameObject:
   - component: {fileID: 612349318}
   - component: {fileID: 612349317}
   m_Layer: 6
-  m_Name: PlayingArea
+  m_Name: CPUPlayingArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -997,12 +996,12 @@ Transform:
   m_GameObject: {fileID: 612349315}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0.06413, y: 5.5729103, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1700399865}
-  m_Father: {fileID: 562167163}
+  m_Father: {fileID: 2127850844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &612349317
 MonoBehaviour:
@@ -1220,7 +1219,6 @@ Transform:
   m_Children:
   - {fileID: 378728256}
   - {fileID: 683994419}
-  - {fileID: 1526822308}
   - {fileID: 2138427448}
   - {fileID: 374860032}
   m_Father: {fileID: 0}
@@ -1485,7 +1483,7 @@ GameObject:
   - component: {fileID: 1526822309}
   - component: {fileID: 1526822310}
   m_Layer: 6
-  m_Name: PlayingArea
+  m_Name: PlayerPlayingArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1500,12 +1498,12 @@ Transform:
   m_GameObject: {fileID: 1526822307}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0.06413, y: 1.5729101, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2111648495}
-  m_Father: {fileID: 703585310}
+  m_Father: {fileID: 2127850844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1526822309
 BoxCollider2D:
@@ -3038,7 +3036,9 @@ Transform:
   m_LocalPosition: {x: -0.06413, y: -3.57291, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1526822308}
+  - {fileID: 612349316}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2127850845
@@ -3211,9 +3211,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 2052988203}
   - {fileID: 1713785087}
+  - {fileID: 2127850844}
   - {fileID: 703585310}
   - {fileID: 448217907}
   - {fileID: 562167163}
   - {fileID: 1785072186}
   - {fileID: 359649764}
-  - {fileID: 2127850844}
