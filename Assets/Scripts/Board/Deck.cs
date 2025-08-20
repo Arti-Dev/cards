@@ -39,9 +39,6 @@ public class Deck : MonoBehaviour
     {
         Card card = CardDatabase.InstantiateRandomCard(transform);
         card.Init();
-        card.transform.SetParent(transform, false);
-        card.transform.SetParent(player.GetPlayerHand().transform, true);
-        card.TransformLerp(player.GetPlayerHand().transform.position);
-        if (card.GetPlayer().IsHuman()) card.Show();
+        player.GetPlayerHand().AddCard(card);
     }
 }

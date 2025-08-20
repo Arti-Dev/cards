@@ -30,7 +30,11 @@ public class Card : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
         float.PositiveInfinity, dropLayermask);
-        if (!hit) return;
+        if (!hit)
+        {
+            TransformLerp(originalPosition);
+            return;
+        }
         
         if (!player.IsTurn())
         {

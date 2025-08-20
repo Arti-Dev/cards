@@ -310,6 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fee5fcd114e0664285643c111777fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLeft: 5
+  maxRight: 5
+  alignment: 1
+  maxUniqueCards: 100
 --- !u!1 &214424524
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fee5fcd114e0664285643c111777fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLeft: 5
+  maxRight: 5
+  alignment: 0
+  maxUniqueCards: 100
 --- !u!1 &448217905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,6 +1362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fee5fcd114e0664285643c111777fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLeft: 10
+  maxRight: 10
+  alignment: 0
+  maxUniqueCards: 100
 --- !u!4 &953764092
 Transform:
   m_ObjectHideFlags: 0
