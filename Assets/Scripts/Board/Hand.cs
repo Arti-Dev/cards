@@ -16,8 +16,6 @@ public class Hand : MonoBehaviour
     [SerializeField] private Alignment alignment = Alignment.Left;
     private float gap = 1.5f;
     
-    [SerializeField] private float maxUniqueCards = 100;
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,24 +40,23 @@ public class Hand : MonoBehaviour
         return card;
     }
 
+    // todo break up and move to CPUPlayer class
     public void PlayCard(int index)
     {
         Card card = transform.GetChild(index).GetComponent<Card>();
         Player.GetPlayer(this).GetPlayingArea().PlayCard(card);
-        // todo not working
-        UpdateCardLocations(0, transform.childCount);
     }
 
     public void AddCard(Card card)
     {
-        card.transform.SetParent(transform, true);
-        card.GetSpriteRenderer().sortingOrder = transform.childCount;
         var relativePosition = CalculateCardLocation(transform.childCount);
+        card.GetSpriteRenderer().sortingOrder = transform.childCount;
+        card.transform.SetParent(transform, true);
         card.TransformLerp(relativePosition);
         if (card.GetPlayer().IsHuman()) card.Show();
     }
 
-    private void UpdateCardLocations(int startIndex, int endIndex)
+    public void UpdateCardLocations(int startIndex, int endIndex)
     {
         for (var i = startIndex; i < endIndex; i++)
         {
@@ -69,6 +66,11 @@ public class Hand : MonoBehaviour
             card.TransformLerp(newPosition);
             card.GetSpriteRenderer().sortingOrder = i;
         }
+    }
+    
+    public void UpdateCardLocations()
+    {
+        UpdateCardLocations(0, transform.childCount);
     }
 
     private Vector3 CalculateCardLocation(int index) => alignment switch

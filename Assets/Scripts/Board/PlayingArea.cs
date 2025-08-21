@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayingArea : MonoBehaviour
 {
-    Player player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +18,9 @@ public class PlayingArea : MonoBehaviour
     public void PlayCard(Card card)
     {
         // todo check if there's already a card in play
+        Player player = card.GetPlayer();
         MoveCardHere(card);
+        player.GetPlayerHand().UpdateCardLocations();
         card.Show();
         card.Play();
         // todo if there are too many cards here some cards will become permanently unmovable
