@@ -16,7 +16,7 @@ public class CPUPlayer : MonoBehaviour
         int cards = player.GetPlayerHand().CountCards();
         if (cards < 2)
         {
-            player.GetDeck().DrawRandomCard();
+            player.GetDeck().DrawTopCard();
             Player.GetPlayer(this).TurnOver();
         }
         else
@@ -31,7 +31,7 @@ public class CPUPlayer : MonoBehaviour
             }
             else
             {
-                player.GetDeck().DrawRandomCard();
+                player.GetDeck().DrawTopCard();
                 Player.GetPlayer(this).TurnOver();
             }
         }

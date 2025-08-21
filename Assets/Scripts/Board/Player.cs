@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < 3; i++)
         {
-            deck.DrawRandomCard();
+            deck.DrawTopCard();
             yield return new WaitForSeconds(0.3f);
         }
     }
