@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c495f357cdda4a8cb68172d5af1e7981, type: 3}
   m_Name: MixedDeck
   m_EditorClassIdentifier: 
-  cards: []
+  cards:
+  - cardName: pointCard
+    count: 8
+  - cardName: losePointCard
+    count: 6
+  - cardName: yoinkCard
+    count: 6

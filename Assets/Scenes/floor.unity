@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3fa4fd26aa4f4499aa38b7f1430715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staticDeck: {fileID: 11400000, guid: f8f25fe643979f442ac64cf91471482f, type: 2}
 --- !u!1 &210516685
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +314,6 @@ MonoBehaviour:
   maxLeft: 5
   maxRight: 5
   alignment: 1
-  maxUniqueCards: 100
 --- !u!1 &214424524
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3fa4fd26aa4f4499aa38b7f1430715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staticDeck: {fileID: 11400000, guid: 24e27c33288ad3d46bff636cadd33290, type: 2}
 --- !u!212 &214424528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -609,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3fa4fd26aa4f4499aa38b7f1430715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staticDeck: {fileID: 11400000, guid: 24e27c33288ad3d46bff636cadd33290, type: 2}
 --- !u!61 &374860035
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -702,7 +704,6 @@ MonoBehaviour:
   maxLeft: 5
   maxRight: 5
   alignment: 0
-  maxUniqueCards: 100
 --- !u!1 &448217905
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac5153e86d1c48428e534848ab5786d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!61 &579045582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1365,7 +1367,6 @@ MonoBehaviour:
   maxLeft: 10
   maxRight: 10
   alignment: 0
-  maxUniqueCards: 100
 --- !u!4 &953764092
 Transform:
   m_ObjectHideFlags: 0
@@ -2679,6 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac5153e86d1c48428e534848ab5786d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!61 &1992482946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3171,6 +3173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac5153e86d1c48428e534848ab5786d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!61 &2138427451
 BoxCollider2D:
   m_ObjectHideFlags: 0

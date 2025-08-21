@@ -86,4 +86,28 @@ public class Deck : MonoBehaviour
             cardIds.Push(value);
         }
     }
+    
+    // todo add animation for this
+    public void ShuffleDiscardPileIntoDeck(DiscardPile discardPile)
+    {
+        if (discardPile == null || discardPile.GetDiscardedCards().Count == 0)
+        {
+            Debug.Log("Discard pile is empty!");
+            return;
+        }
+        
+        foreach (var cardId in discardPile.GetDiscardedCards())
+        {
+            cardIds.Push(cardId);
+        }
+        
+        discardPile.ClearDiscardPile();
+        ShuffleDeck();
+        Debug.Log("Discard pile shuffled into deck!");
+    }
+
+    public int Count()
+    {
+        return cardIds.Count;
+    }
 }

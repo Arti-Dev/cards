@@ -16,6 +16,7 @@ public class Card : MonoBehaviour
     [SerializeField] private Sprite faceDownSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite faceUpSprite;
+    private string id;
 
     public void Play()
     {
@@ -122,5 +123,15 @@ public class Card : MonoBehaviour
     public SpriteRenderer GetSpriteRenderer()
     {
         return spriteRenderer;
+    }
+
+    public void SetId(string newId)
+    {
+        id = newId;
+    }
+    
+    public string GetId()
+    {
+        return id;
     }
 }

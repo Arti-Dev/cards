@@ -21,6 +21,7 @@ public class CardDatabase : ScriptableObject
         if (!cardDictionary.ContainsKey(str)) return null;
         Card card = Instantiate(cardDictionary[str], parent).GetComponent<Card>();
         card.transform.localPosition = Vector3.zero;
+        card.SetId(str);
         return card;
     }
 

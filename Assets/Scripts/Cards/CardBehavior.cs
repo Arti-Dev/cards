@@ -12,7 +12,7 @@ public abstract class CardBehavior : MonoBehaviour
 
     public virtual void Discard(DiscardPile pile)
     {
-        pile.UpdateTexture(GetCardObject());
+        pile.Discard(GetCardObject());
         Destroy(gameObject);
     }
 
