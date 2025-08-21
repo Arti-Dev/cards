@@ -21,10 +21,6 @@ public class Card : MonoBehaviour
     {
         GetCardBehaviorObject().Play();
     }
-    public string GetID()
-    {
-        return GetCardBehaviorObject().GetId();
-    }
 
     public void OnDrop(Vector3 originalPosition)
     {

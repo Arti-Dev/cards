@@ -36,11 +36,4 @@ public class PointCard : CardBehavior
         Discard(playerState.GetDiscardPile());
         GetCardObject().GetPlayer().SetActionable(true);
     }
-
-    public override string GetId()
-    {
-        return "pointCard";
-    }
-
-
 }

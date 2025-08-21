@@ -10,11 +10,4 @@ public class BlankCard : CardBehavior
         card.TransformLerp(playerState.GetDiscardPile().transform.position);
         Discard(playerState.GetDiscardPile());
     }
-
-    public override string GetId()
-    {
-        return "blankCard";
-    }
-
-
 }

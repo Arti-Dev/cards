@@ -38,11 +38,4 @@ public class YoinkCard : CardBehavior
         Discard(player.GetDiscardPile());
         GetCardObject().GetPlayer().SetActionable(true);
     }
-
-    public override string GetId()
-    {
-        return "yoinkCard";
-    }
-
-
 }

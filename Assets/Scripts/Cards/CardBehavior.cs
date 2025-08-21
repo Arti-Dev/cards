@@ -3,7 +3,6 @@ using UnityEngine;
 public abstract class CardBehavior : MonoBehaviour
 {
     public abstract void Play();
-    public abstract string GetId();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()

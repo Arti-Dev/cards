@@ -7,7 +7,14 @@ using UnityEngine;
 public class CardDatabase : ScriptableObject
 {
     private static Dictionary<string, GameObject> cardDictionary = new Dictionary<string, GameObject>();
-    public List<GameObject> cardList;
+    public List<CardIdentifier> cardList;
+
+    [System.Serializable]
+    public class CardIdentifier
+    {
+        public string id;
+        public GameObject card;
+    }
 
     public static Card InstantiateCard(string str, Transform parent)
     {
@@ -26,10 +33,9 @@ public class CardDatabase : ScriptableObject
 
     public void InitDictionary()
     {
-        foreach (GameObject card in cardList)
+        foreach (CardIdentifier cardWrapper in cardList)
         {
-            if (card.GetComponent<Card>())
-                cardDictionary[card.GetComponent<Card>().GetID()] = card;
+            cardDictionary[cardWrapper.id] = cardWrapper.card;
         }
     }
 
