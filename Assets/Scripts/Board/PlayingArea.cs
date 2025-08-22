@@ -62,6 +62,5 @@ public class PlayingArea : MonoBehaviour
         Vector3 location = transform.TransformPoint(boardCardRelativeLocations[slot]);
         card.TransformLerp(location);
         boardCards[slot] = card;
-        card.SetPlayable(false);
     }
 }

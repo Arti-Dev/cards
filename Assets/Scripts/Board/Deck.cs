@@ -48,7 +48,6 @@ public class Deck : MonoBehaviour
     public void DrawTopCard()
     {
         Card card = CardDatabase.InstantiateCard(cardIds.Pop(), transform);
-        card.Init();
         player.GetPlayerHand().AddCard(card);
     }
 

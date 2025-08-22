@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -6,14 +5,13 @@ public class Card : MonoBehaviour
     // Define which player state this card belongs to
     protected Player player = null;
     private bool moveable = true;
-    private bool playable = true;
+    private bool hasBeenPlayed = false;
     
     private bool lerping = true;
     private float lerpTime = 0;
     private const float lerpIncrement = 1 / 60f;
     private Vector3 startTransform = Vector3.zero;
     private Vector3 targetTransform = Vector3.zero;
-    private Vector3 offset = Vector3.zero;
     
     [SerializeField] public LayerMask dropLayermask;
     [SerializeField] private Sprite faceDownSprite;
@@ -24,64 +22,28 @@ public class Card : MonoBehaviour
     public void Play()
     {
         GetCardBehaviorObject().Play();
+        hasBeenPlayed = true;
     }
-
-    // todo move this to drag handler
-    public void OnDrop(Vector3 originalPosition)
+    
+    public void Discard()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
-        float.PositiveInfinity, dropLayermask);
-        if (!hit)
-        {
-            TransformLerp(originalPosition);
-            return;
-        }
-        
-        if (!player.IsTurn())
-        {
-            Debug.Log("It's not your turn!");
-            TransformLerp(originalPosition);
-            return;
-        }
-        if (!player.IsActionable())
-        {
-            Debug.Log("You can't play a card right now!");
-            TransformLerp(originalPosition);
-            return;
-        }
-        
-        Type type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
-        if (type == typeof(PlayingArea) && playable)
-        {
-            player.GetPlayingArea().PlayCard(this);
-        }
-        else if (type == typeof(DiscardPile))
-        {
-            GetCardBehaviorObject().Discard(player.GetDiscardPile());
-        }
-        else
-        {
-            TransformLerp(originalPosition);
-        }
-
+        GetCardBehaviorObject().Discard(player.GetDiscardPile());
     }
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Start()
+    void Start()
     {
         player = Player.GetPlayer(this);
-    }
-
-    // We shouldn't need this method, but when I instantiate this class from the Deck the Start() doesn't run in time!
-    public void Init()
-    {
-        player = Player.GetPlayer(this);
-        spriteRenderer.sprite = faceDownSprite;
     }
 
     public void Show()
     {
         spriteRenderer.sprite = faceUpSprite;
+    }
+    
+    public void Hide()
+    {
+        spriteRenderer.sprite = faceDownSprite;
     }
 
     // Update is called once per frame
@@ -100,6 +62,7 @@ public class Card : MonoBehaviour
         }
     }
 
+    // Uses global position
     public void TransformLerp(Vector3 endPosition)
     {
         startTransform = transform.position;
@@ -113,14 +76,9 @@ public class Card : MonoBehaviour
         return moveable;
     }
     
-    public bool CanPlay()
+    public bool HasBeenPlayed()
     {
-        return playable;
-    }
-    
-    public void SetPlayable(bool playable)
-    {
-        this.playable = playable;
+        return hasBeenPlayed;
     }
 
     protected CardBehavior GetCardBehaviorObject()

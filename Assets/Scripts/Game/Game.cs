@@ -77,4 +77,18 @@ public class Game : MonoBehaviour
     {
         return opponent2;
     }
+    
+    public Player GetActivePlayer()
+    {
+        return turnOrder[activePlayerIndex];
+    }
+
+    public Player GetTeammate(Player player)
+    {
+        if (player == player1) return player2;
+        if (player == player2) return player1;
+        if (player == opponent1) return opponent2;
+        if (player == opponent2) return opponent1;
+        return null;
+    }
 }

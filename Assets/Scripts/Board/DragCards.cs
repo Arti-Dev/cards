@@ -8,11 +8,14 @@ public class DragCards : MonoBehaviour
     private Vector3 offset;
     private InputAction leftClickAction;
     private InputAction mousePositionAction;
-    [SerializeField] LayerMask dragMask;
+    private LayerMask dragMask;
+    private LayerMask dropLayermask;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        dragMask = LayerMask.GetMask("Moveable");
+        dropLayermask = LayerMask.GetMask("DropableOn");
         leftClickAction = InputSystem.actions.FindAction("LeftClick");
         mousePositionAction = InputSystem.actions.FindAction("MousePosition");
     }
@@ -30,7 +33,7 @@ public class DragCards : MonoBehaviour
         // release
         else if (!leftClickAction.IsPressed() && draggingCard != null)
         {
-            if (draggingCard != null) draggingCard.OnDrop(originalPosition);
+            if (draggingCard != null) OnDrop(draggingCard);
             draggingCard = null;
         }
 
@@ -49,5 +52,46 @@ public class DragCards : MonoBehaviour
         draggingCard = card;
         offset = card.transform.position - Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>());
         originalPosition = card.transform.position;
+    }
+
+    void OnDrop(Card card)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
+            float.PositiveInfinity, dropLayermask);
+        
+        if (!hit)
+        {
+            card.TransformLerp(originalPosition);
+            return;
+        }
+        
+        Player player = card.GetPlayer();
+        
+        if (!player.IsTurn())
+        {
+            Debug.Log("It's not your turn!");
+            card.TransformLerp(originalPosition);
+            return;
+        }
+        if (!player.IsActionable())
+        {
+            Debug.Log("You can't play a card right now!");
+            card.TransformLerp(originalPosition);
+            return;
+        }
+        
+        var type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
+        if (type == typeof(PlayingArea) && !card.HasBeenPlayed())
+        {
+            player.GetPlayingArea().PlayCard(card);
+        }
+        else if (type == typeof(DiscardPile))
+        {
+            card.Discard();
+        }
+        else
+        {
+            card.TransformLerp(originalPosition);
+        }
     }
 }
