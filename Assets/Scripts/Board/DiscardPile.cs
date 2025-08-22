@@ -24,6 +24,12 @@ public class DiscardPile : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!player.IsTurn())
+        {
+            Debug.Log("It's not your turn!");
+            return;
+        }
+        
         Deck deck = player.GetDeck();
         if (deck == null)
         {

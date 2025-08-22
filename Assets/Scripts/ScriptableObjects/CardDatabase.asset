@@ -21,3 +21,5 @@ MonoBehaviour:
     card: {fileID: 5244891899839244371, guid: 27a6c6ce5da5bd14f9aa3e907bcfb709, type: 3}
   - id: yoinkCard
     card: {fileID: 7855284998002521863, guid: 089066470b03dde4bb9e96b77d780a72, type: 3}
+  - id: roughSeas
+    card: {fileID: 2865930543325741769, guid: d726dee33bd12be4799ddac775bf150b, type: 3}

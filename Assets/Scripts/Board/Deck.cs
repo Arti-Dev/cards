@@ -30,14 +30,14 @@ public class Deck : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (cardIds.Count == 0)
-        {
-            Debug.Log("Deck is empty!");
-            return;
-        }
         if (!player.IsTurn() || !player.IsActionable())
         {
             Debug.Log("It's not your turn!");
+            return;
+        }
+        if (cardIds.Count == 0)
+        {
+            Debug.Log("Deck is empty!");
             return;
         }
         

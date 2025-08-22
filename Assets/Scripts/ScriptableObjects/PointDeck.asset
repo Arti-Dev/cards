@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PointDeck
   m_EditorClassIdentifier: 
   cards:
-  - cardName: pointCard
+  - cardName: roughSeas
     count: 4

@@ -6,12 +6,15 @@ public class Card : MonoBehaviour
     // Define which player state this card belongs to
     protected Player player = null;
     private bool moveable = true;
+    private bool playable = true;
+    
     private bool lerping = true;
     private float lerpTime = 0;
     private const float lerpIncrement = 1 / 60f;
     private Vector3 startTransform = Vector3.zero;
     private Vector3 targetTransform = Vector3.zero;
     private Vector3 offset = Vector3.zero;
+    
     [SerializeField] public LayerMask dropLayermask;
     [SerializeField] private Sprite faceDownSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -23,6 +26,7 @@ public class Card : MonoBehaviour
         GetCardBehaviorObject().Play();
     }
 
+    // todo move this to drag handler
     public void OnDrop(Vector3 originalPosition)
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
@@ -47,7 +51,7 @@ public class Card : MonoBehaviour
         }
         
         Type type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
-        if (type == typeof(PlayingArea))
+        if (type == typeof(PlayingArea) && playable)
         {
             player.GetPlayingArea().PlayCard(this);
         }
@@ -108,6 +112,16 @@ public class Card : MonoBehaviour
     {
         return moveable;
     }
+    
+    public bool CanPlay()
+    {
+        return playable;
+    }
+    
+    public void SetPlayable(bool playable)
+    {
+        this.playable = playable;
+    }
 
     protected CardBehavior GetCardBehaviorObject()
     {
@@ -133,5 +147,10 @@ public class Card : MonoBehaviour
     public string GetId()
     {
         return id;
+    }
+
+    public void SetScale(float scale)
+    {
+        transform.localScale = new Vector3(scale, scale, scale);
     }
 }
