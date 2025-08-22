@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField] private DiscardPile discardPile = null;
     
     private bool turn;
+
+    public delegate void TurnStartAction(Player player);
+    public static event TurnStartAction OnTurnStart;
+    
     // Inactionable means that the player cannot make any other moves right now (but their turn isn't over)
     private bool actionable;
     
@@ -103,6 +107,8 @@ public class Player : MonoBehaviour
     {
         turn = true;
         actionable = true;
+
+        if (OnTurnStart != null) OnTurnStart(this);
 
         if (cpu)
         {
