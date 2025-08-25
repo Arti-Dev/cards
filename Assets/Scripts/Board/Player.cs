@@ -1,4 +1,5 @@
 using System.Collections;
+using Board;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Hand hand = null;
     [SerializeField] private Deck deck = null;
     [SerializeField] private DiscardPile discardPile = null;
+    [SerializeField] private EndTurnButton endTurnButton = null;
     
     private bool turn;
 
@@ -41,6 +43,10 @@ public class Player : MonoBehaviour
         deck.SetPlayer();
         StartCoroutine(StartingCoroutine());
         scoreText = scoreTextObject.GetComponent<TMP_Text>();
+        if (endTurnButton)
+        {
+            endTurnButton.gameObject.SetActive(false);
+        }
     }
 
     IEnumerator StartingCoroutine()
@@ -107,6 +113,11 @@ public class Player : MonoBehaviour
     {
         turn = true;
         actionable = true;
+
+        if (endTurnButton)
+        {
+            endTurnButton.gameObject.SetActive(true);
+        }
 
         if (OnTurnStart != null) OnTurnStart(this);
 
