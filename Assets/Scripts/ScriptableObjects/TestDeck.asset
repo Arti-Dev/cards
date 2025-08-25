@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: TestDeck
   m_EditorClassIdentifier: 
   cards:
-  - cardName: roughSeas
+  - cardName: gordianKnot
     count: 4
   - cardName: pointCard
     count: 4
-  - cardName: blankCard
-    count: 16

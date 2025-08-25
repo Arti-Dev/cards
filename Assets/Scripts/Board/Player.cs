@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private bool turn;
 
     public delegate void TurnStartAction(Player player);
-    public static event TurnStartAction OnTurnStart;
+    public static event TurnStartAction TurnStartEvent;
     
     // Inactionable means that the player cannot make any other moves right now (but their turn isn't over)
     private bool actionable;
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
             endTurnButton.gameObject.SetActive(true);
         }
 
-        if (OnTurnStart != null) OnTurnStart(this);
+        if (TurnStartEvent != null) TurnStartEvent(this);
 
         if (cpu)
         {

@@ -11,6 +11,21 @@ public class DragCards : MonoBehaviour
     private LayerMask dragMask;
     private LayerMask dropLayermask;
 
+
+    public class CardClickEventData
+    {
+        public Card card;
+        public bool cancelled = false;
+
+        public CardClickEventData(Card card)
+        {
+            this.card = card;
+        }
+    }
+    
+    public delegate void OnCardClick(CardClickEventData data);
+    public static event OnCardClick CardClickEvent;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +39,7 @@ public class DragCards : MonoBehaviour
     void Update()
     {
         // click
-        if (leftClickAction.IsPressed() && !draggingCard)
+        if (leftClickAction.WasPressedThisFrame() && !draggingCard)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>()), Vector2.zero,
         float.PositiveInfinity, dragMask);
@@ -48,6 +63,10 @@ public class DragCards : MonoBehaviour
         if (!hit) return;
         Card card = hit.transform.GetComponent<Card>();
         if (!card) return;
+
+        CardClickEventData eventData = new CardClickEventData(card);
+        if (CardClickEvent != null) CardClickEvent(eventData);
+            
         if (!card.CanMove() || !card.GetPlayer().IsHuman()) return;
         draggingCard = card;
         offset = card.transform.position - Camera.main.ScreenToWorldPoint(mousePositionAction.ReadValue<Vector2>());

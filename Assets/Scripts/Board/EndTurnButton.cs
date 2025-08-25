@@ -14,7 +14,7 @@ namespace Board
         {
             if (!player.IsTurn() || !player.IsActionable())
             {
-                Debug.Log("It's not your turn!");
+                Debug.Log("You can't do this right now!");
                 return;
             }
             player.TurnOver();

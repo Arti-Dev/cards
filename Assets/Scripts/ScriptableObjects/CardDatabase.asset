@@ -23,3 +23,5 @@ MonoBehaviour:
     card: {fileID: 7855284998002521863, guid: 089066470b03dde4bb9e96b77d780a72, type: 3}
   - id: roughSeas
     card: {fileID: 2865930543325741769, guid: d726dee33bd12be4799ddac775bf150b, type: 3}
+  - id: gordianKnot
+    card: {fileID: 2865930543325741769, guid: ab2e0c676fbd1b948a65383d339394c1, type: 3}

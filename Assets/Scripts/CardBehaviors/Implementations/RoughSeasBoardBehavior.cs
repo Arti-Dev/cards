@@ -4,15 +4,15 @@ namespace CardBehaviors.Implementations
     {
         public override void RegisterEvents()
         {
-            Player.OnTurnStart += OnTurnStart;
+            Player.TurnStartEvent += TurnStartEvent;
         }
         
         public override void UnregisterEvents()
         {
-            Player.OnTurnStart -= OnTurnStart;
+            Player.TurnStartEvent -= TurnStartEvent;
         }
         
-        public void OnTurnStart(Player player)
+        public void TurnStartEvent(Player player)
         {
             if (card.GetPlayer() != player) return;
             player.GetDeck().DrawTopCard();

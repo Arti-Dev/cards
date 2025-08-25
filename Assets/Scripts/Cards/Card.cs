@@ -1,4 +1,5 @@
 using CardBehaviors;
+using TMPro;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -15,7 +16,7 @@ public class Card : MonoBehaviour
     private Vector3 targetTransform = Vector3.zero;
     
     [SerializeField] private Sprite faceDownSprite;
-    [SerializeField] private Sprite faceUpSprite;
+    private Sprite faceUpSprite;
     private SpriteRenderer spriteRenderer;
     [SerializeField] public GameObject text;
     private bool destroyWhenLerpComplete = false;
@@ -41,6 +42,7 @@ public class Card : MonoBehaviour
     {
         player = Player.GetPlayer(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        faceUpSprite = spriteRenderer.sprite;
         if (text) text.SetActive(false);
     }
 
@@ -83,6 +85,12 @@ public class Card : MonoBehaviour
         moveable = false;
     }
 
+    public void SetText(string str)
+    {
+        if (!text) return;
+        text.GetComponent<TextMeshProUGUI>().SetText(str);
+    }
+
     public bool CanMove()
     {
         return moveable;
@@ -95,7 +103,6 @@ public class Card : MonoBehaviour
 
     public Player GetPlayer()
     {
-        if (player == null) return Player.GetPlayer(this);
         return player;
     }
 
