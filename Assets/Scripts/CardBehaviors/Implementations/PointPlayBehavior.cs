@@ -22,10 +22,7 @@ namespace CardBehaviors.Implementations
             player.AddScore(pointsToAdd);
 
             yield return new WaitForSeconds(2);
-
-            card.TransformLerp(player.GetDiscardPile().transform.position);
-            card.text.SetActive(false);
-            yield return new WaitForSeconds(1);
+            
             card.Discard();
             player.SetActionable(true);
         }
