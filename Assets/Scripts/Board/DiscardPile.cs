@@ -46,7 +46,7 @@ public class DiscardPile : MonoBehaviour
         }
     }
 
-    public void Discard(Card card)
+    public void PushCard(Card card)
     {
         spriteRenderer.sprite = card.GetSpriteRenderer().sprite;
         discardedCards.Push(card.GetId());

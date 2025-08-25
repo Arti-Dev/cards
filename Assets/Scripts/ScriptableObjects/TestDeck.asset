@@ -17,3 +17,5 @@ MonoBehaviour:
     count: 4
   - cardName: pointCard
     count: 4
+  - cardName: blankCard
+    count: 16

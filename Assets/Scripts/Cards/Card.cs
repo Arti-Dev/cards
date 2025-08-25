@@ -1,3 +1,4 @@
+using CardBehaviors;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -13,27 +14,34 @@ public class Card : MonoBehaviour
     private Vector3 startTransform = Vector3.zero;
     private Vector3 targetTransform = Vector3.zero;
     
-    [SerializeField] public LayerMask dropLayermask;
     [SerializeField] private Sprite faceDownSprite;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite faceUpSprite;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] public GameObject text;
+    private bool destroyWhenLerpComplete = false;
+    
     private string id;
+
+    [SerializeField] public BoardBehavior boardBehavior = null;
+    [SerializeField] public PlayBehavior playBehavior = null;
+    [SerializeField] public VisualBehavior visualBehavior = null;
+    [SerializeField] public DiscardBehavior discardBehavior = null;
 
     public void Play()
     {
-        GetCardBehaviorObject().Play();
-        hasBeenPlayed = true;
+        hasBeenPlayed = playBehavior.Play();
     }
     
     public void Discard()
     {
-        GetCardBehaviorObject().Discard(player.GetDiscardPile());
+        discardBehavior.Discard();
     }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    void Awake()
     {
         player = Player.GetPlayer(this);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (text) text.SetActive(false);
     }
 
     public void Show()
@@ -58,6 +66,10 @@ public class Card : MonoBehaviour
                 lerping = false;
                 moveable = true;
                 lerpTime = 0;
+                if (destroyWhenLerpComplete)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -79,11 +91,6 @@ public class Card : MonoBehaviour
     public bool HasBeenPlayed()
     {
         return hasBeenPlayed;
-    }
-
-    protected CardBehavior GetCardBehaviorObject()
-    {
-        return gameObject.GetComponent<CardBehavior>();
     }
 
     public Player GetPlayer()
@@ -110,5 +117,10 @@ public class Card : MonoBehaviour
     public void SetScale(float scale)
     {
         transform.localScale = new Vector3(scale, scale, scale);
+    }
+    
+    public void SetDestroyWhenLerpComplete(bool destroy)
+    {
+        destroyWhenLerpComplete = destroy;
     }
 }
