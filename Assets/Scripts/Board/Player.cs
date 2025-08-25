@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // todo this coroutine should be called by the Game first
     IEnumerator StartingCoroutine()
     {
         yield return new WaitForSeconds(0.3f);
@@ -113,6 +114,8 @@ public class Player : MonoBehaviour
     {
         turn = true;
         actionable = true;
+        
+        deck.DrawTopCard();
 
         if (endTurnButton)
         {

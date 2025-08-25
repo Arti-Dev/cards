@@ -16,13 +16,12 @@ public class CPUPlayer : MonoBehaviour
         int cards = player.GetPlayerHand().CountCards();
         if (cards < 2)
         {
-            player.GetDeck().DrawTopCard();
             Player.GetPlayer(this).TurnOver();
         }
         else
         {
-            // 50/50 to play a random card or draw another card
-            int random = UnityEngine.Random.Range(0, 2);
+            // 50/50 to play a random card or end their turn
+            int random = Random.Range(0, 2);
             if (random == 0)
             {
                 int randomCard = UnityEngine.Random.Range(0, player.GetPlayerHand().CountCards());
@@ -31,7 +30,6 @@ public class CPUPlayer : MonoBehaviour
             }
             else
             {
-                player.GetDeck().DrawTopCard();
                 Player.GetPlayer(this).TurnOver();
             }
         }

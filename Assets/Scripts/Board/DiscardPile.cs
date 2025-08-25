@@ -22,29 +22,29 @@ public class DiscardPile : MonoBehaviour
 
     }
 
-    void OnMouseDown()
-    {
-        if (!player.IsTurn())
-        {
-            Debug.Log("It's not your turn!");
-            return;
-        }
-        
-        Deck deck = player.GetDeck();
-        if (deck == null)
-        {
-            Debug.Log("There is no deck??");
-        }
-
-        if (deck.Count() == 0)
-        {
-            deck.ShuffleDiscardPileIntoDeck(this);
-        }
-        else
-        {
-            Debug.Log("You can only shuffle your discard pile back into your deck when it is empty!");
-        }
-    }
+    // void OnMouseDown()
+    // {
+    //     if (!player.IsTurn())
+    //     {
+    //         Debug.Log("It's not your turn!");
+    //         return;
+    //     }
+    //     
+    //     Deck deck = player.GetDeck();
+    //     if (deck == null)
+    //     {
+    //         Debug.Log("There is no deck??");
+    //     }
+    //
+    //     if (deck.Count() == 0)
+    //     {
+    //         deck.ShuffleDiscardPileIntoDeck(this);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("You can only shuffle your discard pile back into your deck when it is empty!");
+    //     }
+    // }
 
     public void PushCard(Card card)
     {
@@ -61,5 +61,10 @@ public class DiscardPile : MonoBehaviour
     {
         discardedCards.Clear();
         spriteRenderer.sprite = emptySprite;
+    }
+
+    public int Count()
+    {
+        return discardedCards.Count;
     }
 }

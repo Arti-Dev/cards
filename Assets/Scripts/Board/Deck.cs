@@ -28,25 +28,34 @@ public class Deck : MonoBehaviour
 
     }
 
-    void OnMouseDown()
+    // void OnMouseDown()
+    // {
+    //     if (!player.IsTurn() || !player.IsActionable())
+    //     {
+    //         Debug.Log("It's not your turn!");
+    //         return;
+    //     }
+    //     if (cardIds.Count == 0)
+    //     {
+    //         Debug.Log("Deck is empty!");
+    //         return;
+    //     }
+    //     
+    //     DrawTopCard();
+    //     Player.GetPlayer(this).TurnOver();
+    // }
+
+    public void DrawTopCard()
     {
-        if (!player.IsTurn() || !player.IsActionable())
+        if (cardIds.Count == 0 && player.GetDiscardPile().Count() == 0)
         {
-            Debug.Log("It's not your turn!");
+            Debug.Log("Deck and discard pile are empty - can't draw a card!");
             return;
         }
         if (cardIds.Count == 0)
         {
-            Debug.Log("Deck is empty!");
-            return;
+            ShuffleDiscardPileIntoDeck(player.GetDiscardPile());
         }
-        
-        DrawTopCard();
-        Player.GetPlayer(this).TurnOver();
-    }
-
-    public void DrawTopCard()
-    {
         Card card = CardDatabase.InstantiateCard(cardIds.Pop(), transform);
         player.GetPlayerHand().AddCard(card);
     }
