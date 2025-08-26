@@ -27,6 +27,7 @@ namespace CardBehaviors.Implementations
             player.SetActionable(false);
             player.SetStarCardPlayedThisTurn(true);
             card.SetText($"Discard {cardsToDiscard}\nDraw {cardsToDraw}");
+            card.text.SetActive(true);
             Debug.Log($"Click {cardsToDiscard} card(s) in your hand to discard.");
             DragCards.CardClickEvent += OnCardClick;
             return true;
