@@ -18,7 +18,14 @@ namespace CardBehaviors.Implementations
                 Debug.Log("Not enough cards in hand to play this card!");
                 return false;
             }
+
+            if (player.HasStarCardPlayedThisTurn())
+            {
+                Debug.Log("A star card has already been played this turn!");
+                return false;
+            }
             player.SetActionable(false);
+            player.SetStarCardPlayedThisTurn(true);
             card.SetText($"Discard {cardsToDiscard}\nDraw {cardsToDraw}");
             Debug.Log($"Click {cardsToDiscard} card(s) in your hand to discard.");
             DragCards.CardClickEvent += OnCardClick;

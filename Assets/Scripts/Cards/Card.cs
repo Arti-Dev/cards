@@ -22,6 +22,7 @@ public class Card : MonoBehaviour
     private bool destroyWhenLerpComplete = false;
     
     private string id;
+    [SerializeField] private bool starCard = false;
 
     [SerializeField] public BoardBehavior boardBehavior = null;
     [SerializeField] public PlayBehavior playBehavior = null;
@@ -130,5 +131,10 @@ public class Card : MonoBehaviour
     public void SetDestroyWhenLerpComplete(bool destroy)
     {
         destroyWhenLerpComplete = destroy;
+    }
+    
+    public bool IsStarCard()
+    {
+        return starCard;
     }
 }

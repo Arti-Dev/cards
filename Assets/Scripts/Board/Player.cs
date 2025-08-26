@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] private EndTurnButton endTurnButton = null;
     
     private bool turn;
+    private bool starCardPlayedThisTurn = false;
 
     public delegate void TurnStartAction(Player player);
     public static event TurnStartAction TurnStartEvent;
@@ -133,6 +134,7 @@ public class Player : MonoBehaviour
     public void TurnOver()
     {
         turn = false;
+        starCardPlayedThisTurn = false;
         actionable = true;
         game.NextTurn(this);
     }
@@ -162,6 +164,16 @@ public class Player : MonoBehaviour
     public void SetActionable(bool actionable)
     {
         this.actionable = actionable;
+    }
+
+    public void SetStarCardPlayedThisTurn(bool played)
+    {
+        starCardPlayedThisTurn = played;
+    }
+    
+    public bool HasStarCardPlayedThisTurn()
+    {
+        return starCardPlayedThisTurn;
     }
 
 }
