@@ -25,3 +25,5 @@ MonoBehaviour:
     card: {fileID: 2865930543325741769, guid: d726dee33bd12be4799ddac775bf150b, type: 3}
   - id: gordianKnot
     card: {fileID: 2865930543325741769, guid: ab2e0c676fbd1b948a65383d339394c1, type: 3}
+  - id: tsunami
+    card: {fileID: 2865930543325741769, guid: 763d67bd0c83ccb469617d5bd98ff28a, type: 3}
