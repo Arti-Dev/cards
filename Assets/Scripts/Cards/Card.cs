@@ -28,9 +28,10 @@ public class Card : MonoBehaviour
     [SerializeField] public VisualBehavior visualBehavior = null;
     [SerializeField] public DiscardBehavior discardBehavior = null;
 
-    public void Play()
+    public bool Play()
     {
         hasBeenPlayed = playBehavior.Play();
+        return hasBeenPlayed;
     }
     
     public void Discard()

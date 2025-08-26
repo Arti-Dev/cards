@@ -102,7 +102,8 @@ public class DragCards : MonoBehaviour
         var type = hit.collider.gameObject.GetComponent<MonoBehaviour>().GetType();
         if (type == typeof(PlayingArea) && !card.HasBeenPlayed())
         {
-            player.GetPlayingArea().PlayCard(card);
+            if (!player.GetPlayingArea().PlayCard(card))
+                card.TransformLerp(originalPosition);
         }
         else if (type == typeof(DiscardPile))
         {

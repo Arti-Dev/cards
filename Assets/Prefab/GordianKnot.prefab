@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsToDiscard: 1
-  cardsToDraw: 2
+  cardsToDraw: 3
 --- !u!1 &3673736198375813420
 GameObject:
   m_ObjectHideFlags: 0

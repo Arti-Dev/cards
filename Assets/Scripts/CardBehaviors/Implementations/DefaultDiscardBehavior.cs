@@ -8,6 +8,8 @@ namespace CardBehaviors.Implementations
         public override void Discard()
         {
             Player player = card.GetPlayer();
+            card.transform.SetParent(player.GetDiscardPile().transform, true);
+            player.GetPlayerHand().UpdateCardLocations();
             player.SetActionable(true);
             player.GetDiscardPile().PushCard(card);
             

@@ -28,14 +28,19 @@ public class PlayingArea : MonoBehaviour
 
     }
 
-    public void PlayCard(Card card)
+    public bool PlayCard(Card card)
     {
         // todo check if there's already a card in play
         Player player = card.GetPlayer();
         MoveCardToCenter(card);
+        if (!card.Play())
+        {
+            card.transform.SetParent(player.GetPlayerHand().transform);
+            return false;
+        }
         player.GetPlayerHand().UpdateCardLocations();
         card.Show();
-        card.Play();
+        return true;
     }
 
     private void MoveCardToCenter(Card card)

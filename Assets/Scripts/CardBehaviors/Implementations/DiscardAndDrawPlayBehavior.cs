@@ -13,6 +13,11 @@ namespace CardBehaviors.Implementations
         public override bool Play()
         {
             Player player = card.GetPlayer();
+            if (player.GetPlayerHand().CountCards() < cardsToDiscard)
+            {
+                Debug.Log("Not enough cards in hand to play this card!");
+                return false;
+            }
             player.SetActionable(false);
             card.SetText($"Discard {cardsToDiscard}\nDraw {cardsToDraw}");
             Debug.Log($"Click {cardsToDiscard} card(s) in your hand to discard.");
@@ -23,6 +28,7 @@ namespace CardBehaviors.Implementations
         void OnCardClick(DragCards.CardClickEventData data)
         {
             Card targetCard = data.card;
+            if (card == targetCard) return;
             Player player = targetCard.GetPlayer();
             if (player != card.GetPlayer()) return;
             targetCard.Discard();
@@ -40,6 +46,7 @@ namespace CardBehaviors.Implementations
 
         IEnumerator DrawAndEnd()
         {
+            yield return new WaitForSeconds(0.5f);
             Player player = card.GetPlayer();
             for (int i = 0; i < cardsToDraw; i++)
             {
