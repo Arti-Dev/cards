@@ -45,12 +45,12 @@ public class Deck : MonoBehaviour
     //     Player.GetPlayer(this).TurnOver();
     // }
 
-    public void DrawTopCard()
+    public Card DrawTopCard()
     {
         if (cardIds.Count == 0 && player.GetDiscardPile().Count() == 0)
         {
             Debug.Log("Deck and discard pile are empty - can't draw a card!");
-            return;
+            return null;
         }
         if (cardIds.Count == 0)
         {
@@ -58,6 +58,7 @@ public class Deck : MonoBehaviour
         }
         Card card = CardDatabase.InstantiateCard(cardIds.Pop(), transform);
         player.GetPlayerHand().AddCard(card);
+        return card;
     }
 
     public void LoadDeck()

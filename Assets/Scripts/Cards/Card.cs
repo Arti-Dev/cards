@@ -7,6 +7,7 @@ public class Card : MonoBehaviour
     // Define which player state this card belongs to
     protected Player player = null;
     private bool moveable = true;
+    private bool playable = true;
     private bool hasBeenPlayed = false;
     
     private bool lerping = true;
@@ -31,6 +32,7 @@ public class Card : MonoBehaviour
 
     public bool Play()
     {
+        if (!playable) return false;
         hasBeenPlayed = playBehavior.Play();
         return hasBeenPlayed;
     }
@@ -136,5 +138,27 @@ public class Card : MonoBehaviour
     public bool IsStarCard()
     {
         return starCard;
+    }
+    
+    public bool IsPlayable()
+    {
+        return playable;
+    }
+    
+    /**
+     * Makes this card unplayable for the rest of this turn, but enables it next turn.
+     */
+    public void SetUnplayableThisTurn()
+    {
+        if (!playable) return;
+        playable = false;
+        Player.TurnStartEvent += OnNewTurnSetPlayable;
+    }
+
+    private void OnNewTurnSetPlayable(Player p)
+    {
+        if (p != player) return;
+        Player.TurnStartEvent -= OnNewTurnSetPlayable;
+        playable = true;
     }
 }
