@@ -27,3 +27,5 @@ MonoBehaviour:
     card: {fileID: 2865930543325741769, guid: ab2e0c676fbd1b948a65383d339394c1, type: 3}
   - id: tsunami
     card: {fileID: 2865930543325741769, guid: 763d67bd0c83ccb469617d5bd98ff28a, type: 3}
+  - id: fishing
+    card: {fileID: 2865930543325741769, guid: 9279bca6cb69047408d4b7a71ca1d13e, type: 3}

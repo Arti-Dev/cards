@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,6 +73,7 @@ public class Hand : MonoBehaviour
     {
         UpdateCardLocations(0, transform.childCount);
     }
+    
 
     private Vector3 CalculateCardLocation(int index) => alignment switch
     {

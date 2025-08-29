@@ -9,6 +9,7 @@ public class Card : MonoBehaviour
     private bool moveable = true;
     private bool playable = true;
     private bool hasBeenPlayed = false;
+    private bool highlighted = false;
     
     private bool lerping = true;
     private float lerpTime = 0;
@@ -173,6 +174,18 @@ public class Card : MonoBehaviour
         player = newPlayer;
         transform.SetParent(player.GetPlayerHand().transform, true);
         player.GetPlayerHand().UpdateCardLocations();
-        
+        newPlayer.GetPlayerHand().UpdateCardLocations();
+    }
+    
+    public bool IsHighlighted()
+    {
+        return highlighted;
+    }
+
+    public void SetHighlighted(bool highlight)
+    {
+        Debug.Log(id + "highlighted: " + highlight);
+        highlighted = highlight;
+        // todo add a visual highlight effect
     }
 }
