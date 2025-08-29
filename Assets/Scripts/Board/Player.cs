@@ -176,4 +176,9 @@ public class Player : MonoBehaviour
         return starCardPlayedThisTurn;
     }
 
+    public Player GetTeammate()
+    {
+        return game.GetTeammate(this);
+    }
+
 }

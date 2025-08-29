@@ -104,6 +104,11 @@ public class Card : MonoBehaviour
     {
         return hasBeenPlayed;
     }
+    
+    public void SetHasBeenPlayed(bool played)
+    {
+        hasBeenPlayed = played;
+    }
 
     public Player GetPlayer()
     {
@@ -160,5 +165,14 @@ public class Card : MonoBehaviour
         if (p != player) return;
         Player.TurnStartEvent -= OnNewTurnSetPlayable;
         playable = true;
+    }
+    
+    public void TransferToOtherPlayer(Player newPlayer)
+    {
+        if (player == newPlayer) return;
+        player = newPlayer;
+        transform.SetParent(player.GetPlayerHand().transform, true);
+        player.GetPlayerHand().UpdateCardLocations();
+        
     }
 }
