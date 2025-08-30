@@ -18,7 +18,7 @@ namespace CardBehaviors.Implementations
         IEnumerator playCoroutine()
         {
             Player player = card.GetPlayer();
-            card.text.SetActive(true);
+            card.playText.SetActive(true);
             player.AddScore(pointsToAdd);
 
             yield return new WaitForSeconds(2);

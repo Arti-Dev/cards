@@ -82,6 +82,24 @@ public class Hand : MonoBehaviour
         _ => Vector3.zero
     };
 
+    private void MergeCards()
+    {
+        Dictionary<string, List<Card>> cardFrequencies = new Dictionary<string, List<Card>>();
+        foreach (Transform t in transform)
+        {
+            var card = t.GetComponent<Card>();
+            var id = card.GetId();
+            cardFrequencies.TryAdd(id, new List<Card>());
+            cardFrequencies[id].Add(card);
+        }
+
+        foreach (var pair in cardFrequencies)
+        {
+            if (pair.Value.Count <= 1) continue;
+            Debug.Log($"You have {pair.Value} copies of {pair.Key}");
+        }
+    }
+
 
 
     // public Vector3 calculateLandingSpot()

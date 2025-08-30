@@ -15,7 +15,7 @@ namespace CardBehaviors.Implementations
             
             card.boardBehavior.UnregisterEvents();
             card.SetDestroyWhenLerpComplete(true);
-            if (card.text) card.text.SetActive(false);
+            if (card.playText) card.playText.SetActive(false);
             card.TransformLerp(player.GetDiscardPile().transform.position);
         }
     }

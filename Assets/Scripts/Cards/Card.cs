@@ -1,6 +1,7 @@
 using CardBehaviors;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Card : MonoBehaviour
     private bool playable = true;
     private bool hasBeenPlayed = false;
     private bool highlighted = false;
+
+    private int stacks = 1;
     
     private bool lerping = true;
     private float lerpTime = 0;
@@ -20,7 +23,8 @@ public class Card : MonoBehaviour
     [SerializeField] private Sprite faceDownSprite;
     private Sprite faceUpSprite;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] public GameObject text;
+    [FormerlySerializedAs("text")] [SerializeField] public GameObject playText;
+    [SerializeField] public GameObject stackText;
     private bool destroyWhenLerpComplete = false;
     
     private string id;
@@ -48,7 +52,8 @@ public class Card : MonoBehaviour
         player = Player.GetPlayer(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         faceUpSprite = spriteRenderer.sprite;
-        if (text) text.SetActive(false);
+        if (playText) playText.SetActive(false);
+        if (stackText) stackText.SetActive(false);
     }
 
     public void Show()
@@ -92,8 +97,8 @@ public class Card : MonoBehaviour
 
     public void SetText(string str)
     {
-        if (!text) return;
-        text.GetComponent<TextMeshProUGUI>().SetText(str);
+        if (!playText) return;
+        playText.GetComponent<TextMeshProUGUI>().SetText(str);
     }
 
     public bool CanMove()
@@ -187,5 +192,16 @@ public class Card : MonoBehaviour
         // Debug.Log(id + "highlighted: " + highlight);
         highlighted = highlight;
         // todo add a visual highlight effect
+    }
+    
+    public void SetStacks(int newStacks)
+    {
+        stacks = newStacks;
+        if (stacks < 1) stacks = 1;
+    }
+    
+    public int GetStacks()
+    {
+        return stacks;
     }
 }

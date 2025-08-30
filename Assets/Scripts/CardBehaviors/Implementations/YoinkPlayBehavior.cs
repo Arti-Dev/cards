@@ -17,7 +17,7 @@ namespace CardBehaviors.Implementations
         IEnumerator playCoroutine()
         {
             Player player = card.GetPlayer();
-            card.text.SetActive(true);
+            card.playText.SetActive(true);
             // todo check if score is actually above 10
             // todo allow choosing opponent if there are multiple
             player.GetOpponent().RemoveScore(10);

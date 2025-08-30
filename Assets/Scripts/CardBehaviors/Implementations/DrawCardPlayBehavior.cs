@@ -12,7 +12,7 @@ namespace CardBehaviors.Implementations
             Player player = card.GetPlayer();
             player.SetActionable(false);
             card.SetText($"Draw {cardsToDraw}");
-            card.text.SetActive(true);
+            card.playText.SetActive(true);
             StartCoroutine(DrawAndEnd());
             return true;
         }
