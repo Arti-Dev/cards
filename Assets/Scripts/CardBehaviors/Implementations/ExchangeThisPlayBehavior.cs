@@ -21,6 +21,7 @@ namespace CardBehaviors.Implementations
             }
             
             player.SetActionable(false);
+            card.playText.SetActive(true);
             Debug.Log("Click a card in your teammate's hand to exchange with this card.");
             DragCards.CardClickEvent += OnCardClick;
             return true;
@@ -51,6 +52,7 @@ namespace CardBehaviors.Implementations
             Debug.Log($"Exchanged {card.GetId()} with {targetCard.GetId()}");
             DragCards.CardClickEvent -= OnCardClick;
             
+            card.playText.SetActive(false);
             player.SetActionable(true);
         }
     }
