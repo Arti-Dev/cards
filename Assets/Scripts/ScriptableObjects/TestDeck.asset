@@ -14,6 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - cardName: highTide
-    count: 4
+    count: 2
   - cardName: pointCard
     count: 4
+  - cardName: gordianKnot
+    count: 1
+  - cardName: tsunami
+    count: 3
+  - cardName: roughSeas
+    count: 1
+  - cardName: fishing
+    count: 3
