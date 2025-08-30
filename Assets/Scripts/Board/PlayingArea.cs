@@ -30,9 +30,11 @@ public class PlayingArea : MonoBehaviour
 
     public bool PlayCard(Card card)
     {
-        // todo check if there's already a card in play
         Player player = card.GetPlayer();
         MoveCardToCenter(card);
+        
+        
+        
         if (!card.Play())
         {
             card.transform.SetParent(player.GetPlayerHand().transform);
