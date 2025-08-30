@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestDeck
   m_EditorClassIdentifier: 
   cards:
-  - cardName: fishing
+  - cardName: highTide
     count: 4
   - cardName: pointCard
     count: 4

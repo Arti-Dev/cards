@@ -48,6 +48,7 @@ namespace CardBehaviors.Implementations
             }
             else
             {
+                DragCards.CardClickEvent -= OnCardClick;
                 StartCoroutine(DrawAndEnd());
             }
         }
@@ -63,7 +64,6 @@ namespace CardBehaviors.Implementations
             }
             card.Discard();
             player.SetActionable(true);
-            DragCards.CardClickEvent -= OnCardClick;
             cardsDiscarded = 0;
         }
     }

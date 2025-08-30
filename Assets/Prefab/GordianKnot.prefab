@@ -161,6 +161,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -182,10 +184,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1992265915
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6674868978544099146, guid: 80b337427bd14e9448d75b63602ea872, type: 3}
+  m_Sprite: {fileID: -4344759395787968026, guid: 7dd767a99bca9654ca55e124eeeb5165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -256,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceDownSprite: {fileID: -4571828015118065507, guid: be16c90a30bb44140b106acb778d51d4, type: 3}
   text: {fileID: 3673736198375813420}
+  starCard: 0
   boardBehavior: {fileID: 2742422052975843805}
   playBehavior: {fileID: 4826420648604282512}
   visualBehavior: {fileID: -3938574603051022454}

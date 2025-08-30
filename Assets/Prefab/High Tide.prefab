@@ -188,7 +188,7 @@ SpriteRenderer:
   m_SortingLayerID: 1992265915
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6674868978544099146, guid: 80b337427bd14e9448d75b63602ea872, type: 3}
+  m_Sprite: {fileID: 971795308696076084, guid: f138b181eb5757e4cba15c1b5ff4d2b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -312,7 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fd8cbc452746459620d43ede6d8517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardBehaviors.Implementations.ExchangeAnyPlayBehavior
-  exchangeCount: 2
+  selfCardCount: 2
+  teammateCardCount: 2
 --- !u!1 &3673736198375813420
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: fishing
+  m_text: hightide
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -184,7 +184,7 @@ public class Card : MonoBehaviour
 
     public void SetHighlighted(bool highlight)
     {
-        Debug.Log(id + "highlighted: " + highlight);
+        // Debug.Log(id + "highlighted: " + highlight);
         highlighted = highlight;
         // todo add a visual highlight effect
     }
