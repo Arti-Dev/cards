@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceDownSprite: {fileID: -4571828015118065507, guid: be16c90a30bb44140b106acb778d51d4, type: 3}
-  playText: {fileID: 0}
-  stackText: {fileID: 0}
+  playText: {fileID: 289218977798676575}
+  stackText: {fileID: 4054089133265411529}
   starCard: 0
   boardBehavior: {fileID: 2742422052975843805}
   playBehavior: {fileID: 4691651893264377819}
@@ -223,9 +223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1896227083696244493, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -39.714
+    - target: {fileID: 2763362551372284458, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+      propertyPath: m_text
+      value: 'fishing
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 9112477883034752057, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_Pivot.x
@@ -293,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112477883034752057, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.18497
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9112477883034752057, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -312,6 +314,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+--- !u!1 &289218977798676575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3159263864969421541, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+  m_PrefabInstance: {fileID: 3446510043988951738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4054089133265411529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1699952770335465331, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+  m_PrefabInstance: {fileID: 3446510043988951738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5882388055501100675 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9112477883034752057, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}

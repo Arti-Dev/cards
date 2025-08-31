@@ -136,6 +136,10 @@ public class Player : MonoBehaviour
         turn = false;
         starCardPlayedThisTurn = false;
         actionable = true;
+        
+        // hand.MergeCards();
+        hand.UpdateCardLocations();
+        
         game.NextTurn(this);
     }
 

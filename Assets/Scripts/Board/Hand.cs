@@ -16,11 +16,14 @@ public class Hand : MonoBehaviour
     [SerializeField] private float maxRight = 5;
     [SerializeField] private Alignment alignment = Alignment.Left;
     private float gap = 1.5f;
+    private float verticalOffset = 2.5f;
+    private int maxPerRow = 6;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        // todo temp
+        if (transform.position.y > 0) verticalOffset = -verticalOffset;
     }
 
     // Update is called once per frame
@@ -56,47 +59,70 @@ public class Hand : MonoBehaviour
         card.TransformLerp(relativePosition);
         if (card.GetPlayer().IsHuman()) card.Show();
     }
-
-    public void UpdateCardLocations(int startIndex, int endIndex)
+    
+    private IEnumerator UpdateCardLocationsCoroutine()
     {
-        for (var i = startIndex; i < endIndex; i++)
+        yield return 0;
+        for (var i = 0; i < transform.childCount; i++)
         {
             var card = transform.GetChild(i).GetComponent<Card>();
-            if (card == null) continue;
+            if (!card) continue;
             var newPosition = CalculateCardLocation(i);
             card.TransformLerp(newPosition);
             card.GetSpriteRenderer().sortingOrder = i;
         }
     }
-    
+
     public void UpdateCardLocations()
     {
-        UpdateCardLocations(0, transform.childCount);
+        StartCoroutine(UpdateCardLocationsCoroutine());
     }
-    
 
-    private Vector3 CalculateCardLocation(int index) => alignment switch
+    private Vector3 CalculateCardLocation(int index)
     {
-        Alignment.Left => transform.TransformPoint(new Vector3(-maxLeft + index * gap, 0, 0)),
-        Alignment.Right => transform.TransformPoint(new Vector3(maxRight - index * gap, 0, 0)),
-        _ => Vector3.zero
-    };
+        int horizontal = index % maxPerRow;
+        int vertical = index / maxPerRow;
+        Vector3 point = Vector3.zero;
+        switch (alignment)
+        {
+            case Alignment.Left:
+                point = transform.TransformPoint(new Vector3(-maxLeft + horizontal * gap, 0, 0));
+                point.y -= vertical * verticalOffset;
+                break;
+            case Alignment.Right:
+                point = transform.TransformPoint(new Vector3(maxRight - horizontal * gap, 0, 0));
+                point.y -= vertical * verticalOffset;
+                break;
+        }
 
-    private void MergeCards()
+        return point;
+    }
+
+    public void MergeCards()
     {
-        Dictionary<string, List<Card>> cardFrequencies = new Dictionary<string, List<Card>>();
+        Dictionary<string, List<Card>> cardsTypeSorted = new Dictionary<string, List<Card>>();
         foreach (Transform t in transform)
         {
             var card = t.GetComponent<Card>();
+            if (!card.IsPlayable()) continue;
             var id = card.GetId();
-            cardFrequencies.TryAdd(id, new List<Card>());
-            cardFrequencies[id].Add(card);
+            cardsTypeSorted.TryAdd(id, new List<Card>());
+            cardsTypeSorted[id].Add(card);
         }
 
-        foreach (var pair in cardFrequencies)
+        // Merge cards with frequency > 1
+        foreach (var pair in cardsTypeSorted)
         {
-            if (pair.Value.Count <= 1) continue;
-            Debug.Log($"You have {pair.Value} copies of {pair.Key}");
+            var cardList = pair.Value;
+            if (cardList.Count <= 1) continue;
+            int totalStacks = 0;
+            for (int i = 0; i < cardList.Count; i++)
+            {
+                var card = cardList[i];
+                totalStacks += card.GetStacks();
+                if (i != 0) Destroy(card.gameObject);
+            }
+            cardList[0].SetStacks(totalStacks);
         }
     }
 

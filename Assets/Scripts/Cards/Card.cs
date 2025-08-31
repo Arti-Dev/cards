@@ -179,7 +179,6 @@ public class Card : MonoBehaviour
         player = newPlayer;
         transform.SetParent(player.GetPlayerHand().transform, true);
         player.GetPlayerHand().UpdateCardLocations();
-        newPlayer.GetPlayerHand().UpdateCardLocations();
     }
     
     public bool IsHighlighted()
@@ -198,10 +197,43 @@ public class Card : MonoBehaviour
     {
         stacks = newStacks;
         if (stacks < 1) stacks = 1;
+        if (stacks > 1 && stackText)
+        {
+            stackText.SetActive(true);
+            stackText.GetComponent<TextMeshProUGUI>().SetText("x" + stacks);
+        }
+        else if (stackText)
+        {
+            stackText.SetActive(false);
+        }
     }
     
     public int GetStacks()
     {
         return stacks;
+    }
+
+    /**
+     * Removes the specified number of cards from this stack and returns a new Card with that amount
+     */
+    public Card Split(int amount)
+    {
+        if (amount >= stacks)
+        {
+            Debug.Log("Cannot split more cards than are in the stack!");
+            return null;
+        }
+        SetStacks(stacks - amount);
+        
+        GameObject newCardObj = Instantiate(gameObject, transform.position, transform.rotation);
+        Card newCard = newCardObj.GetComponent<Card>();
+        newCard.SetStacks(amount);
+        return newCard;
+    }
+    
+    // Wiggles the card because why not?
+    public void Wiggle()
+    {
+        
     }
 }
