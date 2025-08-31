@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     IEnumerator StartingCoroutine()
     {
         yield return new WaitForSeconds(0.3f);
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 3; i++)
         {
             deck.DrawTopCard();
             yield return new WaitForSeconds(0.3f);

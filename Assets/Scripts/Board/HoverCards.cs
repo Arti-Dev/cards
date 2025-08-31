@@ -8,12 +8,14 @@ namespace Board
         private Transform hoveredTransform;
         private LayerMask hitMask;
         private InputAction mousePositionAction;
+        private InputAction leftClickAction;
 
 
         void Start()
         {
             hitMask = LayerMask.GetMask("Moveable");
             mousePositionAction = InputSystem.actions.FindAction("MousePosition");
+            leftClickAction = InputSystem.actions.FindAction("LeftClick");
         }
 
         void Update()
@@ -37,6 +39,8 @@ namespace Board
 
                 hoveredTransform = hit.transform;
                 SpriteRenderer newSprite = hoveredTransform.GetComponent<SpriteRenderer>();
+                Card card = hoveredTransform.GetComponent<Card>();
+                if (card && !leftClickAction.IsPressed()) card.Wiggle();
                 newSprite.sortingOrder += 10;
             }
         }

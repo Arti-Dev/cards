@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6448587018107797573}
   - component: {fileID: 2742422052975843805}
   - component: {fileID: -7576502713365017699}
+  - component: {fileID: 5479565523085602259}
   m_Layer: 7
   m_Name: High Tide
   m_TagString: Untagged
@@ -213,6 +214,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardBehaviors.Implementations.ExchangeAnyPlayBehavior
   selfCardCount: 2
   teammateCardCount: 2
+--- !u!95 &5479565523085602259
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865930543325741769}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c56f3e30f5383a43a18e4bf80b537e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1693003186577443475
 PrefabInstance:
   m_ObjectHideFlags: 0

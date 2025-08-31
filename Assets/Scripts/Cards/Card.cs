@@ -34,6 +34,7 @@ public class Card : MonoBehaviour
     [SerializeField] public PlayBehavior playBehavior = null;
     [SerializeField] public VisualBehavior visualBehavior = null;
     [SerializeField] public DiscardBehavior discardBehavior = null;
+    private Animator animator = null;
 
     public bool Play()
     {
@@ -52,6 +53,7 @@ public class Card : MonoBehaviour
         player = Player.GetPlayer(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         faceUpSprite = spriteRenderer.sprite;
+        animator = GetComponent<Animator>();
         if (playText) playText.SetActive(false);
         if (stackText) stackText.SetActive(false);
     }
@@ -231,9 +233,9 @@ public class Card : MonoBehaviour
         return newCard;
     }
     
-    // Wiggles the card because why not?
+    // todo If you quickly mouse over a card multiple times it wiggles extra times
     public void Wiggle()
     {
-        
+        if (animator) animator.SetTrigger("Wiggle");
     }
 }

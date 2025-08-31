@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6448587018107797573}
   - component: {fileID: 2742422052975843805}
   - component: {fileID: 4826420648604282512}
+  - component: {fileID: 4248822609247131409}
   m_Layer: 7
   m_Name: GordianKnot
   m_TagString: Untagged
@@ -213,6 +214,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsToDiscard: 1
   cardsToDraw: 3
+--- !u!95 &4248822609247131409
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865930543325741769}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c56f3e30f5383a43a18e4bf80b537e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &9002907861349128116
 PrefabInstance:
   m_ObjectHideFlags: 0
