@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Board;
 using UnityEngine;
 
 public class Hand : MonoBehaviour
@@ -15,13 +16,20 @@ public class Hand : MonoBehaviour
     [SerializeField] private float maxLeft = 5;
     [SerializeField] private float maxRight = 5;
     [SerializeField] private Alignment alignment = Alignment.Left;
+    [SerializeField] private ExpandHandButton expandHandButton;
     private float gap = 1.5f;
     private float verticalOffset = 2.5f;
     private int maxPerRow = 6;
     
+    private Vector3 originalPosition;
+    private bool expanded = false;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        originalPosition = transform.position;
+        if (expandHandButton) expandHandButton.SetHand(this);
+        if (expandHandButton) expandHandButton.gameObject.SetActive(false);
         // todo temp
         if (transform.position.y > 0) verticalOffset = -verticalOffset;
     }
@@ -58,6 +66,20 @@ public class Hand : MonoBehaviour
         card.transform.SetParent(transform, true);
         card.TransformLerp(relativePosition);
         if (card.GetPlayer().IsHuman()) card.Show();
+        
+        // Count cards
+        if (expandHandButton)
+        {
+            if (transform.childCount > maxPerRow)
+            {
+                expandHandButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                expandHandButton.gameObject.SetActive(false);
+                Contract();
+            }
+        }
     }
     
     private IEnumerator UpdateCardLocationsCoroutine()
@@ -82,16 +104,19 @@ public class Hand : MonoBehaviour
     {
         int horizontal = index % maxPerRow;
         int vertical = index / maxPerRow;
+        float indent = gap / 3.0f;
         Vector3 point = Vector3.zero;
         switch (alignment)
         {
             case Alignment.Left:
                 point = transform.TransformPoint(new Vector3(-maxLeft + horizontal * gap, 0, 0));
                 point.y -= vertical * verticalOffset;
+                if (vertical % 2 == 1) point.x -= indent;
                 break;
             case Alignment.Right:
                 point = transform.TransformPoint(new Vector3(maxRight - horizontal * gap, 0, 0));
                 point.y -= vertical * verticalOffset;
+                if (vertical % 2 == 1) point.x += indent;
                 break;
         }
 
@@ -124,6 +149,30 @@ public class Hand : MonoBehaviour
             }
             cardList[0].SetStacks(totalStacks);
         }
+    }
+
+    public void Expand()
+    {
+        int rows = transform.childCount / maxPerRow + 1;
+        Vector3 up = new Vector3(0, (float) (rows * 3.5 - 4.5), 0);
+        transform.position = originalPosition + up;
+        Debug.Log("expanding");
+        UpdateCardLocations();
+        expanded = true;
+        expandHandButton.DownArrowSprite();
+    }
+    
+    public void Contract()
+    {
+        transform.position = originalPosition;
+        UpdateCardLocations();
+        expanded = false;
+        expandHandButton.UpArrowSprite();
+    }
+    
+    public bool IsExpanded()
+    {
+        return expanded;
     }
 
 
