@@ -71,14 +71,14 @@ public class Player : MonoBehaviour
     {
         if (score < 0) return;
         score += delta;
-        scoreText.text = $"Score: {score}";
+        scoreText.text = $"Territory: {score}";
     }
 
     public void RemoveScore(int delta)
     {
         if (score < 0) return;
         score -= delta;
-        scoreText.text = $"Score: {score}";
+        scoreText.text = $"Territory: {score}";
     }
 
     public static Player GetPlayer(MonoBehaviour obj)
