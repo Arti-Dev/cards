@@ -19,6 +19,7 @@ namespace CardBehaviors.Implementations
         {
             Player player = card.GetPlayer();
             Player opponent = player.GetOpponent();
+            card.playText.SetActive(true);
             if (opponent)
             {
                 player.SetActionable(false);
@@ -44,6 +45,7 @@ namespace CardBehaviors.Implementations
             
             card.Discard();
             card.GetPlayer().SetActionable(true);
+            card.playText.SetActive(false);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace CardBehaviors.Implementations
                 yield return new WaitForSeconds(0.5f);
             }
             card.Discard();
+            card.playText.SetActive(false);
             player.SetActionable(true);
         }
     }

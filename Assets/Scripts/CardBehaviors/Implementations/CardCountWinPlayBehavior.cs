@@ -9,6 +9,11 @@ namespace CardBehaviors.Implementations
         
         public override bool CanPlay()
         {
+            if (card.GetPlayer().HasStarCardPlayedThisTurn())
+            {
+                Game.Log("A star card has already been played this turn!");
+                return false;
+            }
             return true;
         }
         
@@ -17,6 +22,7 @@ namespace CardBehaviors.Implementations
             card.GetPlayer().SetActionable(false);
             card.playText.SetActive(true);
             card.StartCoroutine(Coroutine());
+            card.GetPlayer().SetStarCardPlayedThisTurn(true);
             
         }
 
@@ -38,8 +44,8 @@ namespace CardBehaviors.Implementations
                 Game.Log($"Not enough cards to win (needed {requiredCards})!");
                 card.Discard();
                 card.GetPlayer().SetActionable(true);
+                card.playText.SetActive(false);
             }
-            card.playText.SetActive(false);
         }
     }
 }

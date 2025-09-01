@@ -70,6 +70,7 @@ namespace CardBehaviors.Implementations
             }
             card.Discard();
             player.SetActionable(true);
+            card.playText.SetActive(false);
             cardsDiscarded = 0;
         }
     }

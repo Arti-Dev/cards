@@ -253,9 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2763362551372284458, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_text
-      value: 'fishing
-
-'
+      value: Fish your teammate's card!
       objectReference: {fileID: 0}
     - target: {fileID: 4358535311055972341, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_PresetInfoIsWorld

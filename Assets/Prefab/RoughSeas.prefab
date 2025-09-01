@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2763362551372284458, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+      propertyPath: m_text
+      value: Draw an extra card every turn
+      objectReference: {fileID: 0}
     - target: {fileID: 9112477883034752057, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

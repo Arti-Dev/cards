@@ -41,6 +41,7 @@ namespace CardBehaviors.Implementations
             Player player = card.GetPlayer();
             
             player.SetActionable(false);
+            card.playText.SetActive(true);
             Game.Log($"Choose {selfCardCount} cards from your hand");
             
             // Pick x cards in your hand, then pick x cards in partner's hand.
@@ -138,6 +139,7 @@ namespace CardBehaviors.Implementations
             teammate.GetPlayerHand().UpdateCardLocations();
             
             player.SetActionable(true);
+            card.playText.SetActive(false);
             card.Discard();
         }
     }
