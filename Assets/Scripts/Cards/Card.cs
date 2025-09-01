@@ -37,6 +37,8 @@ public class Card : MonoBehaviour
     [SerializeField] public DiscardBehavior discardBehavior = null;
     private Animator animator = null;
     
+    [SerializeField] private GameObject starCardEffectPrefab = null;
+    
     // todo make this cancellable
     public delegate void PlayAction(Card card);
     public static event PlayAction CardPlayEvent;
@@ -45,6 +47,7 @@ public class Card : MonoBehaviour
     {
         if (!playable) return false;
         if (!playBehavior.CanPlay()) return false;
+        if (starCard) PlayStarCardEffect();
         playBehavior.Play();
         if (CardPlayEvent != null) CardPlayEvent(this);
         hasBeenPlayed = true;
@@ -265,5 +268,13 @@ public class Card : MonoBehaviour
     public void Wiggle()
     {
         if (animator) animator.SetTrigger("Wiggle");
+    }
+    
+    public void PlayStarCardEffect()
+    {
+        if (!starCardEffectPrefab) return;
+        GameObject obj = Instantiate(starCardEffectPrefab, transform);
+        obj.transform.localPosition = Vector3.zero;
+        obj.GetComponent<SpriteRenderer>().sprite = spriteRenderer.sprite;
     }
 }

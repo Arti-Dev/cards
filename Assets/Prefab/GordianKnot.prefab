@@ -165,6 +165,7 @@ MonoBehaviour:
   playBehavior: {fileID: 4826420648604282512}
   visualBehavior: {fileID: -3938574603051022454}
   discardBehavior: {fileID: 6448587018107797573}
+  starCardEffectPrefab: {fileID: 6667211102677102568, guid: f2b7f48d15febfd4d859e6d4b9062ab5, type: 3}
 --- !u!114 &-3938574603051022454
 MonoBehaviour:
   m_ObjectHideFlags: 0
