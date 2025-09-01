@@ -43,6 +43,8 @@ namespace CardBehaviors.Implementations
             {
                 return;
             }
+
+            data.cancelled = true;
             
             targetCard.TransferToOtherPlayer(player);
             card.TransferToOtherPlayer(teammate);

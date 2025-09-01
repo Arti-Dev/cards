@@ -66,6 +66,7 @@ public class DragCards : MonoBehaviour
 
         CardClickEventData eventData = new CardClickEventData(card);
         if (CardClickEvent != null) CardClickEvent(eventData);
+        if (eventData.cancelled) return;
             
         if (!card.CanMove() || !card.GetPlayer().IsHuman()) return;
         draggingCard = card;
