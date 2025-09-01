@@ -8,6 +8,7 @@ namespace CardBehaviors.Implementations
         public override void Play()
         {
             card.GetPlayer().SetActionable(false);
+            card.playText.SetActive(true);
             StartCoroutine(playCoroutine());
         }
         
@@ -18,6 +19,7 @@ namespace CardBehaviors.Implementations
             card.boardBehavior.RegisterEvents();
             yield return new WaitForSeconds(2);
             
+            card.playText.SetActive(false);
             playingArea.AddBoardCard(card);
             player.SetActionable(true);
         }

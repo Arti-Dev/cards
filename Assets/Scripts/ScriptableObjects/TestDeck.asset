@@ -16,7 +16,7 @@ MonoBehaviour:
   - cardName: highTide
     count: 2
   - cardName: pointCard
-    count: 4
+    count: 2
   - cardName: gordianKnot
     count: 1
   - cardName: tsunami
