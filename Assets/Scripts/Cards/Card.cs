@@ -36,13 +36,17 @@ public class Card : MonoBehaviour
     [SerializeField] public VisualBehavior visualBehavior = null;
     [SerializeField] public DiscardBehavior discardBehavior = null;
     private Animator animator = null;
+    
+    // todo make this cancellable
+    public delegate void PlayAction(Card card);
+    public static event PlayAction CardPlayEvent;
 
     public bool Play()
     {
         if (!playable) return false;
         if (!playBehavior.CanPlay()) return false;
-        
         playBehavior.Play();
+        if (CardPlayEvent != null) CardPlayEvent(this);
         hasBeenPlayed = true;
         return true;
     }
@@ -125,6 +129,12 @@ public class Card : MonoBehaviour
 
     public Player GetPlayer()
     {
+        return player;
+    }
+    
+    public Player SetPlayer(Player newPlayer)
+    {
+        player = newPlayer;
         return player;
     }
 

@@ -31,3 +31,5 @@ MonoBehaviour:
     card: {fileID: 2865930543325741769, guid: 9279bca6cb69047408d4b7a71ca1d13e, type: 3}
   - id: highTide
     card: {fileID: 2865930543325741769, guid: 1a21564630fd7114e86af75c52916eeb, type: 3}
+  - id: whirlpool
+    card: {fileID: 2865930543325741769, guid: 0b3bcbc51f0774044804951617916f27, type: 3}

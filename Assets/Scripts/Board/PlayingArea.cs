@@ -9,10 +9,6 @@ public class PlayingArea : MonoBehaviour
 
     private Card[] boardCards;
     
-    // todo make this cancellable
-    public delegate void PlayAction(Card card);
-    public static event PlayAction CardPlayEvent;
-    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
