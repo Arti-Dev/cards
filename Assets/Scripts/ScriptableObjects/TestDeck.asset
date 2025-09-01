@@ -27,3 +27,5 @@ MonoBehaviour:
     count: 3
   - cardName: whirlpool
     count: 10
+  - cardName: flood
+    count: 10

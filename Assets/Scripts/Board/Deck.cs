@@ -9,6 +9,7 @@ public class Deck : MonoBehaviour
     protected Player player = null;
     Stack<string> cardIds = new Stack<string>();
     [SerializeField] private CardDeck staticDeck = null;
+    [SerializeField] private GameObject explosionPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -118,5 +119,24 @@ public class Deck : MonoBehaviour
     public int Count()
     {
         return cardIds.Count;
+    }
+
+    public void Explode()
+    {
+        if (explosionPrefab) {
+            GameObject explo = Instantiate(explosionPrefab, transform);
+        }
+    }
+
+    public int AnnihilateHalf()
+    {
+        int total = cardIds.Count / 2;
+        for (int i = 0; i < total; i++)
+        {
+            if (cardIds.Count > 0) cardIds.Pop();
+        }
+        Explode();
+        Debug.Log("Annihilated " + total + " cards from deck!");
+        return total;
     }
 }

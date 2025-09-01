@@ -1,0 +1,47 @@
+using System.Collections;
+using UnityEngine;
+
+namespace CardBehaviors.Implementations
+{
+    public class AnnihilateOpponentDeckPlayBehavior : PlayBehavior
+    {
+        public override bool CanPlay()
+        {
+            if (card.GetPlayer().HasStarCardPlayedThisTurn())
+            {
+                Debug.Log("A star card has already been played this turn!");
+                return false;
+            }
+            return true;
+        }
+
+        public override void Play()
+        {
+            Player player = card.GetPlayer();
+            Player opponent = player.GetOpponent();
+            if (opponent)
+            {
+                player.SetActionable(false);
+                StartCoroutine(Coroutine(opponent.GetDeck()));
+            }
+        }
+
+        private IEnumerator Coroutine(Deck opponentDeck)
+        {
+            Deck myDeck = card.GetPlayer().GetDeck();
+            yield return new WaitForSeconds(1f);
+            int cardsToDraw = opponentDeck.AnnihilateHalf();
+            yield return new WaitForSeconds(0.5f);
+            
+            Debug.Log("Drawing " + cardsToDraw + " cards!");
+            
+            for (int i = 0; i < cardsToDraw; i++)
+            {
+                myDeck.DrawTopCard();
+                yield return new WaitForSeconds(0.3f);
+            }
+            
+            card.GetPlayer().SetActionable(true);
+        }
+    }
+}

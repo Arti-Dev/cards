@@ -24,6 +24,7 @@ namespace CardBehaviors.Implementations
         {
             if (target == card) yield break;
             if (target.GetPlayer() != card.GetPlayer()) yield break;
+            if (target.IsStarCard()) yield break;
             card.Wiggle();
             // todo Change so I don't have to set the player here
             Card clone = CardDatabase.InstantiateCard(target.GetId(), transform);
