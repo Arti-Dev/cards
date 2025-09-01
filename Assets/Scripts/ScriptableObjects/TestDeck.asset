@@ -26,6 +26,6 @@ MonoBehaviour:
   - cardName: fishing
     count: 3
   - cardName: whirlpool
-    count: 10
+    count: 1
   - cardName: flood
-    count: 10
+    count: 1

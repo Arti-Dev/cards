@@ -22,6 +22,7 @@ namespace CardBehaviors.Implementations
             if (opponent)
             {
                 player.SetActionable(false);
+                player.SetStarCardPlayedThisTurn(true);
                 StartCoroutine(Coroutine(opponent.GetDeck()));
             }
         }
@@ -41,6 +42,7 @@ namespace CardBehaviors.Implementations
                 yield return new WaitForSeconds(0.3f);
             }
             
+            card.Discard();
             card.GetPlayer().SetActionable(true);
         }
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - cardName: pointCard
-    count: 8
+    count: 12
   - cardName: losePointCard
     count: 6
   - cardName: yoinkCard
