@@ -48,7 +48,10 @@ namespace Board
         private void ResetHovered()
         {
             SpriteRenderer sprite = hoveredTransform.GetComponent<SpriteRenderer>();
+            // todo this is unsafe if something else changed the sorting order
+            // this is visible after using Fishing - the target card is placed in a negative sorting order
             sprite.sortingOrder -= 10;
+            Debug.Log(hoveredTransform);
             hoveredTransform = null;
         }
     }

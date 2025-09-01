@@ -159,6 +159,7 @@ MonoBehaviour:
   faceDownSprite: {fileID: -4571828015118065507, guid: be16c90a30bb44140b106acb778d51d4, type: 3}
   playText: {fileID: 289218977798676575}
   stackText: {fileID: 4054089133265411529}
+  xText: {fileID: 4245253328175480006}
   starCard: 0
   boardBehavior: {fileID: 2742422052975843805}
   playBehavior: {fileID: 4691651893264377819}
@@ -242,6 +243,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5645226305328344131}
     m_Modifications:
+    - target: {fileID: 1530764239759130236, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1772876463625512584, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_Name
       value: CardCanvas
@@ -349,6 +354,11 @@ GameObject:
 --- !u!1 &4054089133265411529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1699952770335465331, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+  m_PrefabInstance: {fileID: 3446510043988951738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4245253328175480006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1530764239759130236, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
   m_PrefabInstance: {fileID: 3446510043988951738}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &5882388055501100675 stripped

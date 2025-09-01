@@ -25,6 +25,7 @@ public class Card : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [FormerlySerializedAs("text")] [SerializeField] public GameObject playText;
     [SerializeField] public GameObject stackText;
+    [SerializeField] public GameObject xText;
     private bool destroyWhenLerpComplete = false;
     
     private string id;
@@ -56,6 +57,7 @@ public class Card : MonoBehaviour
         animator = GetComponent<Animator>();
         if (playText) playText.SetActive(false);
         if (stackText) stackText.SetActive(false);
+        if (xText) xText.SetActive(false);
     }
 
     public void Show()
@@ -165,6 +167,7 @@ public class Card : MonoBehaviour
     {
         if (!playable) return;
         playable = false;
+        if (xText) xText.SetActive(true);
         Player.TurnStartEvent += OnNewTurnSetPlayable;
     }
 
@@ -172,6 +175,7 @@ public class Card : MonoBehaviour
     {
         if (p != player) return;
         Player.TurnStartEvent -= OnNewTurnSetPlayable;
+        if (xText) xText.SetActive(false);
         playable = true;
     }
     

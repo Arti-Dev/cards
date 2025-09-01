@@ -159,6 +159,7 @@ MonoBehaviour:
   faceDownSprite: {fileID: -4571828015118065507, guid: be16c90a30bb44140b106acb778d51d4, type: 3}
   playText: {fileID: 6672867092625472257}
   stackText: {fileID: 6978977376615401111}
+  xText: {fileID: 7094120543008974744}
   starCard: 0
   boardBehavior: {fileID: -3363824479705242219}
   playBehavior: {fileID: 597258576555425933}
@@ -345,5 +346,10 @@ GameObject:
 --- !u!1 &6978977376615401111 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1699952770335465331, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
+  m_PrefabInstance: {fileID: 8596594312830999012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7094120543008974744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1530764239759130236, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
   m_PrefabInstance: {fileID: 8596594312830999012}
   m_PrefabAsset: {fileID: 0}
