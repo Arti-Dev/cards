@@ -160,7 +160,7 @@ MonoBehaviour:
   playText: {fileID: 6280046201315505489}
   stackText: {fileID: 7739351338839967943}
   xText: {fileID: 7624203804476434888}
-  starCard: 0
+  starCard: 1
   boardBehavior: {fileID: 2742422052975843805}
   playBehavior: {fileID: 4826420648604282512}
   visualBehavior: {fileID: -3938574603051022454}
