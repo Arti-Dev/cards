@@ -102,6 +102,16 @@ public class Game : MonoBehaviour
 
     public static void Log(string text)
     {
+        if (!staticMessageText) return;
         staticMessageText.text = text;
-    } 
+    }
+
+    public static void PlayerWin()
+    {
+        if (!staticMessageText) return;
+        staticMessageText.text = "YOU WIN!";
+        staticMessageText.fontSize = 72;
+        staticMessageText.overrideColorTags = true;
+        staticMessageText.color = Color.goldenRod;
+    }
 }

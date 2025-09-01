@@ -35,3 +35,5 @@ MonoBehaviour:
     card: {fileID: 2865930543325741769, guid: 0b3bcbc51f0774044804951617916f27, type: 3}
   - id: flood
     card: {fileID: 2865930543325741769, guid: 577aa386df1b6344a818ab87a554f57e, type: 3}
+  - id: unbridledPotential
+    card: {fileID: 2865930543325741769, guid: b9ddde12a4ef8ba47a730699032251d3, type: 3}

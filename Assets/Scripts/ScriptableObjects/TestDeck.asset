@@ -29,3 +29,5 @@ MonoBehaviour:
     count: 1
   - cardName: flood
     count: 1
+  - cardName: unbridledPotential
+    count: 1
