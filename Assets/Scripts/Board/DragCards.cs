@@ -89,13 +89,13 @@ public class DragCards : MonoBehaviour
         
         if (!player.IsTurn())
         {
-            Debug.Log("It's not your turn!");
+            Game.Log("It's not your turn!");
             card.TransformLerp(originalPosition);
             return;
         }
         if (!player.IsActionable())
         {
-            Debug.Log("You can't play a card right now!");
+            Game.Log("You can't play a card right now!");
             card.TransformLerp(originalPosition);
             return;
         }

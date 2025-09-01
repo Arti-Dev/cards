@@ -156,7 +156,6 @@ public class Hand : MonoBehaviour
         int rows = transform.childCount / maxPerRow + 1;
         Vector3 up = new Vector3(0, (float) (rows * 3.5 - 4.5), 0);
         transform.position = originalPosition + up;
-        Debug.Log("expanding");
         UpdateCardLocations();
         expanded = true;
         expandHandButton.DownArrowSprite();

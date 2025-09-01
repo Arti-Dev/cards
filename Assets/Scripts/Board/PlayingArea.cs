@@ -63,7 +63,7 @@ public class PlayingArea : MonoBehaviour
 
         if (slot >= boardCards.Length)
         {
-            Debug.Log("No board slots available!");
+            Game.Log("No board slots available!");
             return;
         }
         card.transform.SetParent(transform, true);

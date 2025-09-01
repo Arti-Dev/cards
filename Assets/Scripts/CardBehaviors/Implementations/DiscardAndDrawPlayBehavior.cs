@@ -15,13 +15,13 @@ namespace CardBehaviors.Implementations
             Player player = card.GetPlayer();
             if (player.GetPlayerHand().CountCards() < cardsToDiscard)
             {
-                Debug.Log("Not enough cards in hand to play this card!");
+                Game.Log("Not enough cards in hand to play this card!");
                 return false;
             }
 
             if (player.HasStarCardPlayedThisTurn())
             {
-                Debug.Log("A star card has already been played this turn!");
+                Game.Log("A star card has already been played this turn!");
                 return false;
             }
 
@@ -35,7 +35,7 @@ namespace CardBehaviors.Implementations
             player.SetStarCardPlayedThisTurn(true);
             card.SetText($"Discard {cardsToDiscard}\nDraw {cardsToDraw}");
             card.playText.SetActive(true);
-            Debug.Log($"Click {cardsToDiscard} card(s) in your hand to discard.");
+            Game.Log($"Click {cardsToDiscard} card(s) in your hand to discard.");
             DragCards.CardClickEvent += OnCardClick;
         }
 
@@ -50,7 +50,7 @@ namespace CardBehaviors.Implementations
             cardsDiscarded++;
             if (cardsDiscarded < cardsToDiscard)
             {
-                Debug.Log($"{cardsToDiscard - cardsDiscarded} more card(s) to discard");
+                Game.Log($"{cardsToDiscard - cardsDiscarded} more card(s) to discard");
             }
             else
             {

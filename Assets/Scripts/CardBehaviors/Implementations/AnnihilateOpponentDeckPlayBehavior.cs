@@ -9,7 +9,7 @@ namespace CardBehaviors.Implementations
         {
             if (card.GetPlayer().HasStarCardPlayedThisTurn())
             {
-                Debug.Log("A star card has already been played this turn!");
+                Game.Log("A star card has already been played this turn!");
                 return false;
             }
             return true;
@@ -34,7 +34,7 @@ namespace CardBehaviors.Implementations
             int cardsToDraw = opponentDeck.AnnihilateHalf();
             yield return new WaitForSeconds(0.5f);
             
-            Debug.Log("Drawing " + cardsToDraw + " cards!");
+            Game.Log("Drawing " + cardsToDraw + " cards!");
             
             for (int i = 0; i < cardsToDraw; i++)
             {

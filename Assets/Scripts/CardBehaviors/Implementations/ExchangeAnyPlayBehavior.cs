@@ -17,19 +17,19 @@ namespace CardBehaviors.Implementations
             Player teammate = player.GetTeammate();
             if (!teammate)
             {
-                Debug.Log("You have no teammate!");
+                Game.Log("You have no teammate!");
                 return false;
             }
             
             if (player.GetPlayerHand().CountCards() < selfCardCount)
             {
-                Debug.Log("You don't have enough cards in hand to exchange with!");
+                Game.Log("You don't have enough cards in hand to exchange with!");
                 return false;
             }
             
             if (teammate.GetPlayerHand().CountCards() < teammateCardCount)
             {
-                Debug.Log("Your teammate doesn't have enough cards to exchange with!");
+                Game.Log("Your teammate doesn't have enough cards to exchange with!");
                 return false;
             }
 
@@ -41,7 +41,7 @@ namespace CardBehaviors.Implementations
             Player player = card.GetPlayer();
             
             player.SetActionable(false);
-            Debug.Log($"Choose {selfCardCount} cards from your hand");
+            Game.Log($"Choose {selfCardCount} cards from your hand");
             
             // Pick x cards in your hand, then pick x cards in partner's hand.
             // Make sure you can't pick the same card twice
@@ -57,7 +57,7 @@ namespace CardBehaviors.Implementations
             
             if (targetCard.GetPlayer() != player)
             {
-                Debug.Log("This card belongs to " + targetCard.GetPlayer());
+                Game.Log("This card belongs to " + targetCard.GetPlayer());
                 return;
             }
 
@@ -76,7 +76,7 @@ namespace CardBehaviors.Implementations
             if (selfSelectedCards.Count == selfCardCount)
             {
                 DragCards.CardClickEvent -= OnCardClickSelf;
-                Debug.Log($"Now choose {selfCardCount} cards from your teammate's hand");
+                Game.Log($"Now choose {selfCardCount} cards from your teammate's hand");
                 DragCards.CardClickEvent += OnCardClickTeammate;
             }
         }
@@ -89,7 +89,7 @@ namespace CardBehaviors.Implementations
             
             if (targetCard.GetPlayer() != teammate)
             {
-                Debug.Log("This card belongs to " + targetCard.GetPlayer());
+                Game.Log("This card belongs to " + targetCard.GetPlayer());
                 return;
             }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -10,11 +11,18 @@ public class Game : MonoBehaviour
     [SerializeField] private Player opponent2 = null;
 
     [SerializeField] private CardDatabase cardDatabase = null;
+    [SerializeField] private TextMeshProUGUI messageText = null;
+    private static TextMeshProUGUI staticMessageText = null;
 
     private int activePlayerIndex = 0;
     private List<Player> turnOrder = new List<Player>();
-    
 
+    void Awake()
+    {
+        staticMessageText = messageText;
+        if (staticMessageText) staticMessageText.text = "";
+    }
+    
     void Start()
     {
         if (cardDatabase == null)
@@ -55,7 +63,7 @@ public class Game : MonoBehaviour
         activePlayerIndex++;
         if (activePlayerIndex >= turnOrder.Count) activePlayerIndex = 0;
         turnOrder[activePlayerIndex].TurnStart();
-        Debug.Log(turnOrder[activePlayerIndex].name + "'s turn");
+        Game.Log(turnOrder[activePlayerIndex].name + "'s turn");
     }
 
     public Player GetPlayer1()
@@ -91,4 +99,9 @@ public class Game : MonoBehaviour
         if (player == opponent2) return opponent1;
         return null;
     }
+
+    public static void Log(string text)
+    {
+        staticMessageText.text = text;
+    } 
 }

@@ -11,13 +11,13 @@ namespace CardBehaviors.Implementations
             Player teammate = player.GetTeammate();
             if (!teammate)
             {
-                Debug.Log("You have no teammate!");
+                Game.Log("You have no teammate!");
                 return false;
             }
             
             if (teammate.GetPlayerHand().CountCards() == 0)
             {
-                Debug.Log("Your teammate has no cards in hand to exchange with!");
+                Game.Log("Your teammate has no cards in hand to exchange with!");
                 return false;
             }
 
@@ -29,7 +29,7 @@ namespace CardBehaviors.Implementations
             
             player.SetActionable(false);
             card.playText.SetActive(true);
-            Debug.Log("Click a card in your teammate's hand to exchange with this card.");
+            Game.Log("Click a card in your teammate's hand to exchange with this card.");
             DragCards.CardClickEvent += OnCardClick;
         }
         
@@ -41,7 +41,7 @@ namespace CardBehaviors.Implementations
 
             if (targetCard.GetPlayer() != teammate)
             {
-                Debug.Log("This card belongs to " + targetCard.GetPlayer());
+                Game.Log("This card belongs to " + targetCard.GetPlayer());
                 return;
             }
 
@@ -57,7 +57,7 @@ namespace CardBehaviors.Implementations
             targetCard.SetUnplayableThisTurn();
             card.SetHasBeenPlayed(false);
             
-            Debug.Log($"Exchanged {card.GetId()} with {targetCard.GetId()}");
+            Game.Log($"Exchanged {card.GetId()} with {targetCard.GetId()}");
             DragCards.CardClickEvent -= OnCardClick;
             
             card.playText.SetActive(false);

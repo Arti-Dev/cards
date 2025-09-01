@@ -38,12 +38,12 @@ public class Deck : MonoBehaviour
     // {
     //     if (!player.IsTurn() || !player.IsActionable())
     //     {
-    //         Debug.Log("It's not your turn!");
+    //         Game.Log("It's not your turn!");
     //         return;
     //     }
     //     if (cardIds.Count == 0)
     //     {
-    //         Debug.Log("Deck is empty!");
+    //         Game.Log("Deck is empty!");
     //         return;
     //     }
     //     
@@ -55,7 +55,7 @@ public class Deck : MonoBehaviour
     {
         if (cardIds.Count == 0 && player.GetDiscardPile().Count() == 0)
         {
-            Debug.Log("Deck and discard pile are empty - can't draw a card!");
+            Game.Log("Deck and discard pile are empty - can't draw a card!");
             return null;
         }
         if (cardIds.Count == 0)
@@ -107,7 +107,7 @@ public class Deck : MonoBehaviour
     {
         if (discardPile == null || discardPile.GetDiscardedCards().Count == 0)
         {
-            Debug.Log("Discard pile is empty!");
+            Game.Log("Discard pile is empty!");
             return;
         }
         
@@ -118,7 +118,7 @@ public class Deck : MonoBehaviour
         
         discardPile.ClearDiscardPile();
         ShuffleDeck();
-        Debug.Log("Discard pile shuffled into deck!");
+        Game.Log("Discard pile shuffled into deck!");
     }
 
     public int Count()
@@ -141,7 +141,7 @@ public class Deck : MonoBehaviour
             if (cardIds.Count > 0) cardIds.Pop();
         }
         Explode();
-        Debug.Log("Annihilated " + total + " cards from deck!");
+        Game.Log("Annihilated " + total + " cards from deck!");
         return total;
     }
 

@@ -208,7 +208,7 @@ public class Card : MonoBehaviour
     private bool scaledAlready;
     public void SetHighlighted(bool highlight)
     {
-        // Debug.Log(id + "highlighted: " + highlight);
+        // Game.Log(id + "highlighted: " + highlight);
         highlighted = highlight;
         if (highlighted)
         {
@@ -250,7 +250,7 @@ public class Card : MonoBehaviour
     {
         if (amount >= stacks)
         {
-            Debug.Log("Cannot split more cards than are in the stack!");
+            Game.Log("Cannot split more cards than are in the stack!");
             return null;
         }
         SetStacks(stacks - amount);
