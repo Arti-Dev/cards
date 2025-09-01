@@ -1,13 +1,15 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class DiscardPile : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer spriteRenderer = null;
+    SpriteRenderer spriteRenderer = null;
     Sprite emptySprite = null;
     private Player player = null;
     Stack<string> discardedCards = new Stack<string>();
+    [SerializeField] private TextMeshProUGUI cardCountText = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,10 +18,13 @@ public class DiscardPile : MonoBehaviour
         emptySprite = spriteRenderer.sprite;
     }
 
-    // Update is called once per frame
+    private int lastCount = -1;
+    // todo revisit in case this is too expensive
     void Update()
     {
-
+        if (lastCount == discardedCards.Count) return;
+        lastCount = discardedCards.Count;
+        UpdateText();
     }
 
     // void OnMouseDown()
@@ -66,5 +71,10 @@ public class DiscardPile : MonoBehaviour
     public int Count()
     {
         return discardedCards.Count;
+    }
+    
+    private void UpdateText()
+    {
+        if (cardCountText) cardCountText.text = "Discard Pile: " + discardedCards.Count + " cards";
     }
 }

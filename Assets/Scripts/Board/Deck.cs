@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Cards;
+using TMPro;
 using UnityEditor.Rendering;
 
 public class Deck : MonoBehaviour
@@ -9,6 +10,7 @@ public class Deck : MonoBehaviour
     protected Player player = null;
     Stack<string> cardIds = new Stack<string>();
     [SerializeField] private CardDeck staticDeck = null;
+    [SerializeField] private TextMeshProUGUI cardCountText = null;
     [SerializeField] private GameObject explosionPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,10 +25,13 @@ public class Deck : MonoBehaviour
         player = Player.GetPlayer(this);
     }
 
-    // Update is called once per frame
+    private int lastCount = -1;
+    // todo revisit in case this is too expensive
     void Update()
     {
-
+        if (lastCount == cardIds.Count) return;
+        lastCount = cardIds.Count;
+        UpdateText();
     }
 
     // void OnMouseDown()
@@ -138,5 +143,10 @@ public class Deck : MonoBehaviour
         Explode();
         Debug.Log("Annihilated " + total + " cards from deck!");
         return total;
+    }
+
+    private void UpdateText()
+    {
+        if (cardCountText) cardCountText.text = "Deck: " + cardIds.Count + " cards";
     }
 }
