@@ -4,7 +4,8 @@ namespace CardBehaviors.Implementations
 {
     public class ExchangeThisPlayBehavior : PlayBehavior
     {
-        public override bool Play()
+        
+        public override bool CanPlay()
         {
             Player player = card.GetPlayer();
             Player teammate = player.GetTeammate();
@@ -19,12 +20,17 @@ namespace CardBehaviors.Implementations
                 Debug.Log("Your teammate has no cards in hand to exchange with!");
                 return false;
             }
+
+            return true;
+        }
+        public override void Play()
+        {
+            Player player = card.GetPlayer();
             
             player.SetActionable(false);
             card.playText.SetActive(true);
             Debug.Log("Click a card in your teammate's hand to exchange with this card.");
             DragCards.CardClickEvent += OnCardClick;
-            return true;
         }
         
         void OnCardClick(DragCards.CardClickEventData data)

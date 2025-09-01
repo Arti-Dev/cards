@@ -4,6 +4,8 @@ namespace CardBehaviors
 {
     public abstract class PlayBehavior : Behavior
     {
-        public abstract bool Play();
+        public abstract void Play();
+
+        public abstract bool CanPlay();
     }
 }

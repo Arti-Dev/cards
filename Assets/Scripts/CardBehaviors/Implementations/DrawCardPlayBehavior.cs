@@ -7,13 +7,17 @@ namespace CardBehaviors.Implementations
     {
         [SerializeField] private int cardsToDraw = 1;
 
-        public override bool Play()
+        public override void Play()
         {
             Player player = card.GetPlayer();
             player.SetActionable(false);
             card.SetText($"Draw {cardsToDraw}");
             card.playText.SetActive(true);
             StartCoroutine(DrawAndEnd());
+        }
+        
+        public override bool CanPlay()
+        {
             return true;
         }
         

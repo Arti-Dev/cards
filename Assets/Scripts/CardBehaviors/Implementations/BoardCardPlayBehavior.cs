@@ -5,11 +5,10 @@ namespace CardBehaviors.Implementations
 {
     public class BoardCardPlayBehavior : PlayBehavior
     {
-        public override bool Play()
+        public override void Play()
         {
             card.GetPlayer().SetActionable(false);
             StartCoroutine(playCoroutine());
-            return true;
         }
         
         IEnumerator playCoroutine()
@@ -21,6 +20,11 @@ namespace CardBehaviors.Implementations
             
             playingArea.AddBoardCard(card);
             player.SetActionable(true);
+        }
+        
+        public override bool CanPlay()
+        {
+            return true;
         }
     }
 }

@@ -8,6 +8,12 @@ public class PlayingArea : MonoBehaviour
     private List<Vector3> boardCardRelativeLocations = new List<Vector3>();
 
     private Card[] boardCards;
+    
+    // todo make this cancellable
+    public delegate void PlayAction(Card card);
+    public static event PlayAction CardPlayEvent;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,15 +39,15 @@ public class PlayingArea : MonoBehaviour
         Player player = card.GetPlayer();
         MoveCardToCenter(card);
         
-        
-        
         if (!card.Play())
         {
             card.transform.SetParent(player.GetPlayerHand().transform);
             return false;
         }
-        player.GetPlayerHand().UpdateCardLocations();
+        
         card.Show();
+        player.GetPlayerHand().UpdateCardLocations();
+        
         return true;
     }
 

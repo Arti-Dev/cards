@@ -11,7 +11,7 @@ namespace CardBehaviors.Implementations
         HashSet<Card> selfSelectedCards = new HashSet<Card>();
         HashSet<Card> teammateSelectedCards = new HashSet<Card>();
         
-        public override bool Play()
+        public override bool CanPlay()
         {
             Player player = card.GetPlayer();
             Player teammate = player.GetTeammate();
@@ -32,6 +32,13 @@ namespace CardBehaviors.Implementations
                 Debug.Log("Your teammate doesn't have enough cards to exchange with!");
                 return false;
             }
+
+            return true;
+        }
+        
+        public override void Play()
+        {
+            Player player = card.GetPlayer();
             
             player.SetActionable(false);
             Debug.Log($"Choose {selfCardCount} cards from your hand");
@@ -40,7 +47,6 @@ namespace CardBehaviors.Implementations
             // Make sure you can't pick the same card twice
             // Then swap the selected cards
             DragCards.CardClickEvent += OnCardClickSelf;
-            return true;
         }
 
         // todo reduce code duplication

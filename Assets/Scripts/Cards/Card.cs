@@ -40,8 +40,11 @@ public class Card : MonoBehaviour
     public bool Play()
     {
         if (!playable) return false;
-        hasBeenPlayed = playBehavior.Play();
-        return hasBeenPlayed;
+        if (!playBehavior.CanPlay()) return false;
+        
+        playBehavior.Play();
+        hasBeenPlayed = true;
+        return true;
     }
     
     public void Discard()

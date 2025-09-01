@@ -10,7 +10,7 @@ namespace CardBehaviors.Implementations
         
         private int cardsDiscarded = 0;
         
-        public override bool Play()
+        public override bool CanPlay()
         {
             Player player = card.GetPlayer();
             if (player.GetPlayerHand().CountCards() < cardsToDiscard)
@@ -24,13 +24,19 @@ namespace CardBehaviors.Implementations
                 Debug.Log("A star card has already been played this turn!");
                 return false;
             }
+
+            return true;
+        }
+        
+        public override void Play()
+        {
+            Player player = card.GetPlayer();
             player.SetActionable(false);
             player.SetStarCardPlayedThisTurn(true);
             card.SetText($"Discard {cardsToDiscard}\nDraw {cardsToDraw}");
             card.playText.SetActive(true);
             Debug.Log($"Click {cardsToDiscard} card(s) in your hand to discard.");
             DragCards.CardClickEvent += OnCardClick;
-            return true;
         }
 
         void OnCardClick(DragCards.CardClickEventData data)

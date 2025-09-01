@@ -8,10 +8,14 @@ namespace CardBehaviors.Implementations
     {
         [SerializeField] private int pointsToAdd;
         
-        public override bool Play()
+        public override void Play()
         {
             card.GetPlayer().SetActionable(false);
             StartCoroutine(playCoroutine());
+        }
+        
+        public override bool CanPlay()
+        {
             return true;
         }
         
