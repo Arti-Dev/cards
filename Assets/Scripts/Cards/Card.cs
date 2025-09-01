@@ -188,11 +188,22 @@ public class Card : MonoBehaviour
         return highlighted;
     }
 
+    private bool scaledAlready;
     public void SetHighlighted(bool highlight)
     {
         // Debug.Log(id + "highlighted: " + highlight);
         highlighted = highlight;
-        // todo add a visual highlight effect
+        if (highlighted)
+        {
+            if (scaledAlready) return;
+            transform.localScale += new Vector3(0.2f, 0.2f, 0);
+            scaledAlready = true;
+        }
+        else
+        {
+            scaledAlready = false;
+            transform.localScale -= new Vector3(0.2f, 0.2f, 0);
+        }
     }
     
     public void SetStacks(int newStacks)
