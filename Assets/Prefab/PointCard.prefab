@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 1992265915
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5189691121816951081, guid: d1fe314eb5679c3448fb47cbd87a0410, type: 3}
+  m_Sprite: {fileID: -1239313230539302972, guid: da610901cafbe37418a12a43dc34c9f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -165,6 +165,7 @@ MonoBehaviour:
   playBehavior: {fileID: 6219609109201190139}
   visualBehavior: {fileID: 8610485424361418695}
   discardBehavior: {fileID: -1436687871751385230}
+  starCardEffectPrefab: {fileID: 0}
 --- !u!114 &6219609109201190139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141f346af55840a49ac1d6033063c0a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToAdd: 5
+  pointsToAdd: 2
 --- !u!114 &8610485424361418695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2763362551372284458, guid: 13340d38c7f5a39478c57699e9374c5e, type: 3}
       propertyPath: m_text
-      value: '+5 points
+      value: '+2 points
 
 '
       objectReference: {fileID: 0}

@@ -20,9 +20,9 @@ public class CPUPlayer : MonoBehaviour
         }
         else
         {
-            // 50/50 to play a random card or end their turn
-            int random = Random.Range(0, 2);
-            if (random == 0)
+            // Number of cards * 5 + 50% chance to play a card
+            int random = Random.Range(0, 100);
+            if (random < cards * 5 + 50)
             {
                 int randomCard = UnityEngine.Random.Range(0, player.GetPlayerHand().CountCards());
                 player.GetPlayerHand().PlayCard(randomCard);
