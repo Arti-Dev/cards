@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using Cards;
 using TMPro;
-using UnityEditor.Rendering;
 
 public class Deck : MonoBehaviour
 {
