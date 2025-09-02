@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
         staticMessageText = messageText;
         if (staticMessageText) staticMessageText.text = "";
     }

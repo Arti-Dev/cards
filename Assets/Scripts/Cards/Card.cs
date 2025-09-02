@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
     
     private bool lerping = true;
     private float lerpTime = 0;
-    private const float lerpIncrement = 1 / 60f;
+    private const float lerpIncrement = 1 / 15f;
     private Vector3 startTransform = Vector3.zero;
     private Vector3 targetTransform = Vector3.zero;
     
