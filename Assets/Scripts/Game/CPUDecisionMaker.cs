@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CPUPlayer : MonoBehaviour
+public class CPUDecisionMaker : MonoBehaviour
 {
 
     public void Decide(Player player)

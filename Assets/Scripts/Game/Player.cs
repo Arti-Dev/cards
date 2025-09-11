@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     // Inactionable means that the player cannot make any other moves right now (but their turn isn't over)
     private bool actionable;
     
-    [SerializeField] private CPUPlayer cpu;
+    [SerializeField] private CPUDecisionMaker cpu;
 
     [SerializeField] private CardDatabase cardDatabase;
 
